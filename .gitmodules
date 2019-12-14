@@ -1,0 +1,4 @@
+[submodule "NovelRT"]
+	path = dependencies/NovelRT
+	url = https://github.com/novelrt/NovelRT
+	branch = master
