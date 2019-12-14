@@ -14,11 +14,11 @@ if (WIN32)
 endif()
 
 set(METROIDVANIART_HEADERS
+  src/lib/MetroidvaniaRunner.h
 )
 
 set(METROIDVANIART_SOURCES
-	# Temp
-	src/main.cpp
+	src/lib/MetroidvaniaRunner.cpp
 )
 
 set(METROIDVANIART_LINK_LIBRARIES
