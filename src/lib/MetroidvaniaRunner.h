@@ -2,8 +2,10 @@
 #define METROIDVANIART_METROIDVANIARUNNER_H
 
 #include <map>
+#include <string>
 
 #include "../../dependencies/NovelRT/src/NovelRunner.h"
+#include "../../dependencies/NovelRT/src/NovelLayeringService.h"
 #include "./structures/Character.h"
 
 namespace MetroidvaniaRT {
@@ -15,6 +17,7 @@ namespace MetroidvaniaRT {
     // A store of Characters currently on screen.
     std::map<std::string, Character> characters;
   public:
+    MetroidvaniaRunner(int, NovelRT::NovelLayeringService*, uint32_t targetFrameRate = 0);
   protected:
   };
 }

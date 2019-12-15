@@ -1,6 +1,8 @@
 #ifndef METROIDVANIART_CHARACTER_H
 #define METROIDVANIART_CHARACTER_H
 
+#include <string>
+
 namespace MetroidvaniaRT {
   /**
    * The base class for creating a game Character.
