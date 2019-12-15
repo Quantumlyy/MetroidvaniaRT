@@ -15,10 +15,12 @@ endif()
 
 set(METROIDVANIART_HEADERS
   src/lib/MetroidvaniaRunner.h
+  src/lib/structures/Character.h
 )
 
 set(METROIDVANIART_SOURCES
 	src/lib/MetroidvaniaRunner.cpp
+  src/lib/structures/Character.cpp
 )
 
 set(METROIDVANIART_LINK_LIBRARIES
