@@ -15,15 +15,15 @@ namespace MetroidvaniaRT {
    */
   class MetroidvaniaPlatform {
   private:
-    const NovelRT::GeoVector<float>& startingSize;
-    std::string filePath;
-    const MetroidvaniaCommonArgs& args;
-    const NovelRT::RGBAConfig& colourTint;
+    NovelRT::GeoVector<float>& _startingSize;
+    std::string _filePath;
+    MetroidvaniaCommonArgs& _args;
+    NovelRT::RGBAConfig& _colourTint;
   public:
-    NovelRT::NovelImageRect rect;
-    NovelRT::NovelImageRect formRender(const NovelRT::NovelRenderingService&);
+    NovelRT::NovelImageRect* rect;
+    NovelRT::NovelImageRect* formRender(NovelRT::NovelRenderingService*);
 
-    MetroidvaniaPlatform(const NovelRT::GeoVector<float>&, std::string, const MetroidvaniaCommonArgs&, const NovelRT::RGBAConfig&);
+    MetroidvaniaPlatform(NovelRT::GeoVector<float>&, std::string, MetroidvaniaCommonArgs&, NovelRT::RGBAConfig&);
   };
 }
 

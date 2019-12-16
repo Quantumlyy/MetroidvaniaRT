@@ -9,19 +9,17 @@
 #include "../../../../dependencies/NovelRT/src/RGBAConfig.h"
 
 namespace MetroidvaniaRT {
-  MetroidvaniaPlatform::MetroidvaniaPlatform(const NovelRT::GeoVector<float>& startingSize,
+  MetroidvaniaPlatform::MetroidvaniaPlatform(NovelRT::GeoVector<float>& startingSize,
     std::string filePath,
-    const MetroidvaniaCommonArgs& args,
-    const NovelRT::RGBAConfig& colourTint)
-  {
-    this->startingSize = startingSize;
-    this->filePath = filePath;
-    this->args = args;
-    this->colourTint = colourTint;
-  }
+    MetroidvaniaCommonArgs& args,
+    NovelRT::RGBAConfig& colourTint):
+      _startingSize(startingSize),
+      _filePath(filePath),
+      _args(args),
+      _colourTint(colourTint) { }
 
-  NovelRT::NovelImageRect MetroidvaniaPlatform::formRender(const NovelRT::NovelRenderingService& renderer) {
-    this->rect = renderer.getImageRect(this->startingSize, this->filePath, this->args, this->colourTint);
-    return this->rect;
+  NovelRT::NovelImageRect* MetroidvaniaPlatform::formRender(NovelRT::NovelRenderingService* renderer) {
+    rect = renderer->getImageRect(_startingSize, _filePath, _args, _colourTint);
+    return rect;
   }
 }
