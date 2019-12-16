@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "MetroidvaniaPlatform.h"
+#include "../platform/MetroidvaniaPlatform.h"
 #include "../../../../dependencies/NovelRT/src/NovelRenderingService.h"
 
 namespace MetroidvaniaRT {

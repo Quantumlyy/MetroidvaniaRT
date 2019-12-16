@@ -15,14 +15,16 @@ add_subdirectory(dependencies/NovelRT)
 
 set(METROIDVANIART_HEADERS
   src/lib/MetroidvaniaRunner.h
-  src/lib/structures/MetroidvaniaCommonArgs.h
-  src/lib/structures/stage/MetroidvaniaPlatform.h
+  src/lib/structures/platform/MetroidvaniaPlatform.h
+  src/lib/structures/platform/MetroidvaniaImagePlatform.h
+  src/lib/structures/platform/MetroidvaniaFillPlatform.h
   src/lib/structures/stage/MetroidvaniaStage.h
 )
 
 set(METROIDVANIART_SOURCES
 	src/lib/MetroidvaniaRunner.cpp
-  src/lib/structures/stage/MetroidvaniaPlatform.cpp
+  src/lib/structures/platform/MetroidvaniaPlatform.cpp
+  src/lib/structures/platform/MetroidvaniaImagePlatform.cpp
   src/lib/structures/stage/MetroidvaniaStage.cpp
 )
 
