@@ -3,9 +3,9 @@
 
 #include <string>
 
-#include "../MetroidvaniaBase.h"
 #include "../MetroidvaniaCommonArgs.h"
 #include "../../../../dependencies/NovelRT/src/NovelImageRect.h"
+#include "../../../../dependencies/NovelRT/src/NovelRenderingService.h"
 #include "../../../../dependencies/NovelRT/src/GeoVector.h"
 #include "../../../../dependencies/NovelRT/src/RGBAConfig.h"
 
@@ -13,19 +13,17 @@ namespace MetroidvaniaRT {
   /**
    * The base class for creating a game platform in a stage.
    */
-  class MetroidvaniaPlatform : public MetroidvaniaBase {
+  class MetroidvaniaPlatform {
   private:
     const NovelRT::GeoVector<float>& startingSize;
-    std::string_view filePath;
+    std::string filePath;
     const MetroidvaniaCommonArgs& args;
     const NovelRT::RGBAConfig& colourTint;
   public:
     NovelRT::NovelImageRect rect;
+    NovelRT::NovelImageRect formRender(const NovelRT::NovelRenderingService&);
 
-    MetroidvaniaPlatform(const NovelRT::GeoVector<float>& startingSize,
-      std::string_view filePath,
-      const MetroidvaniaCommonArgs& args,
-      const NovelRT::RGBAConfig& colourTint);
+    MetroidvaniaPlatform(const NovelRT::GeoVector<float>&, std::string, const MetroidvaniaCommonArgs&, const NovelRT::RGBAConfig&);
   };
 }
 
