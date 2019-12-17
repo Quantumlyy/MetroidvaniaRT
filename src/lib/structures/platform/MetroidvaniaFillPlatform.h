@@ -14,6 +14,7 @@ namespace MetroidvaniaRT {
   class MetroidvaniaFillPlatform : public MetroidvaniaPlatform {
   public:
     NovelRT::NovelBasicFillRect* renderObj;
+    NovelRT::NovelBasicFillRect* formRender(NovelRT::NovelRenderingService* renderer);
 
     MetroidvaniaFillPlatform(NovelRT::GeoVector<float>&, NovelRT::RGBAConfig&, NovelRT::NovelCommonArgs&);
   };

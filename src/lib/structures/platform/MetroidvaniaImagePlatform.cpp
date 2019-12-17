@@ -15,8 +15,8 @@ namespace MetroidvaniaRT {
     NovelRT::NovelCommonArgs& args,
     NovelRT::RGBAConfig& colourTint) : MetroidvaniaPlatform(startingSize, args, colourTint), _filePath(filePath) { }
 
-  NovelRT::NovelImageRect* MetroidvaniaPlatform::formRender(NovelRT::NovelRenderingService* renderer) {
-    rect = renderer->getImageRect(_startingSize, _filePath, _args, _colourTint);
-    return rect;
+  NovelRT::NovelImageRect* MetroidvaniaImagePlatform::formRender(NovelRT::NovelRenderingService* renderer) {
+    renderObj = renderer->getImageRect(_startingSize, _filePath, _args, _colourTint);
+    return renderObj;
   }
 }

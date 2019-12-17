@@ -13,4 +13,9 @@ namespace MetroidvaniaRT {
       _startingSize(startingSize),
       _args(args),
       _colourTint(colourTint) { }
+
+  NovelRT::NovelRenderObject* MetroidvaniaPlatform::formRender(NovelRT::NovelRenderingService* renderer) {
+    renderObj = renderer->getBasicFillRect(_startingSize, _colourTint, _args);
+    return renderObj;
+  }
 }

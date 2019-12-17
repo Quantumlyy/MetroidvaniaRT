@@ -25,6 +25,7 @@ set(METROIDVANIART_SOURCES
 	src/lib/MetroidvaniaRunner.cpp
   src/lib/structures/platform/MetroidvaniaPlatform.cpp
   src/lib/structures/platform/MetroidvaniaImagePlatform.cpp
+  src/lib/structures/platform/MetroidvaniaFillPlatform.cpp
   src/lib/structures/stage/MetroidvaniaStage.cpp
 )
 
