@@ -16,9 +16,17 @@ namespace MetroidvaniaRT {
     NovelRT::GeoVector<float>& _startingSize;
     NovelRT::NovelCommonArgs& _args;
     NovelRT::RGBAConfig& _colourTint;
+    // The current ID of this Platform.
+    int _id;
   public:
     // The object that was rendered when formRender was called.
     NovelRT::NovelRenderObject* renderObj;
+
+    // Gets the current ID of this Platform.
+    virtual int getId() const;
+    // Sets the current ID of this Platform.
+    virtual void setId(int value);
+
     /**
      * The abstract method for rendering this Platform.
      *
