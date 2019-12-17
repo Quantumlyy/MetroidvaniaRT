@@ -21,12 +21,11 @@ namespace MetroidvaniaRT {
     NovelRT::NovelRenderObject* renderObj;
     /**
      * The abstract method for rendering this Platform.
-     * By default it renders a NovelRT::NovelBasicFillRect .
      *
      * @param renderer The RenderingService on which the Platform should be rendered.
      * @returns The rendered object.
      */
-    virtual NovelRT::NovelRenderObject* formRender(NovelRT::NovelRenderingService*);
+    virtual NovelRT::NovelRenderObject* formRender(NovelRT::NovelRenderingService*) = 0;
 
     MetroidvaniaPlatform(NovelRT::GeoVector<float>&, NovelRT::NovelCommonArgs&, NovelRT::RGBAConfig&);
   };
