@@ -13,6 +13,21 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 # Registering dependencies
 add_subdirectory(dependencies/NovelRT)
 
+set(METROIDVANIART_SHADERS
+  src/resources/shaders/BasicFragmentShader.glsl
+  src/resources/shaders/BasicVertexShader.glsl
+  src/resources/shaders/FontFragmentShader.glsl
+  src/resources/shaders/FontVertexShader.glsl
+  src/resources/shaders/TexturedFragmentShader.glsl
+  src/resources/shaders/TexturedVertexShader.glsl
+)
+
+set(METROIDVANIART_RESOURCES
+  ${METROIDVANIART_SHADERS}
+)
+
+file(COPY ${METROIDVANIART_RESOURCES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 set(METROIDVANIART_HEADERS
   src/lib/MetroidvaniaRunner.h
   src/lib/structures/platform/MetroidvaniaPlatform.h

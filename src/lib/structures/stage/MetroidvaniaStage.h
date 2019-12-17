@@ -21,6 +21,7 @@ namespace MetroidvaniaRT {
 
     MetroidvaniaStage* addPlatform(MetroidvaniaPlatform*);
     void renderPlatforms(NovelRT::NovelRenderingService*);
+    void renderStage(NovelRT::NovelRenderingService*);
 
     MetroidvaniaStage();
   };

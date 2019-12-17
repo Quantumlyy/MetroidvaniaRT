@@ -25,4 +25,7 @@ namespace MetroidvaniaRT {
       platform->formRender(renderer);
     }
   }
+  void MetroidvaniaStage::renderStage(NovelRT::NovelRenderingService* renderer) {
+    renderPlatforms(renderer);
+  }
 }
