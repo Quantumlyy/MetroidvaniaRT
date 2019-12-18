@@ -2,8 +2,8 @@
 #include "MetroidvaniaRunner_C.h"
 
 extern "C" {
-  MetroidvaniaRunner_t createRunner(int displayNumber, const std::string& windowTitle, int targetFramerate) {
-    return reinterpret_cast<MetroidvaniaRunner_t*>(new MetroidvaniaRT::MetroidvaniaRunner(displayNumber, windowTitle, targetFramerate));
+  MetroidvaniaRunner_t* createRunner(int displayNumber) {
+    return reinterpret_cast<MetroidvaniaRunner_t*>(new MetroidvaniaRT::MetroidvaniaRunner(displayNumber));
   }
 
   void destroyRunner(MetroidvaniaRunner_t* runner) {
