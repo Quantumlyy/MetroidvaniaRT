@@ -1,22 +1,12 @@
 #include "MetroidvaniaImagePlatform.h"
 
-#include <string>
-
-#include "MetroidvaniaPlatform.h"
-#include "../../../../dependencies/NovelRT/src/NovelCommonArgs.h"
-#include "../../../../dependencies/NovelRT/src/NovelImageRect.h"
-#include "../../../../dependencies/NovelRT/src/NovelRenderingService.h"
-#include "../../../../dependencies/NovelRT/src/GeoVector.h"
-#include "../../../../dependencies/NovelRT/src/RGBAConfig.h"
-
 namespace MetroidvaniaRT {
-  MetroidvaniaImagePlatform::MetroidvaniaImagePlatform(NovelRT::GeoVector<float>& startingSize,
-    std::string filePath,
+  MetroidvaniaImagePlatform::MetroidvaniaImagePlatform(std::string filePath,
     NovelRT::NovelCommonArgs& args,
-    NovelRT::RGBAConfig& colourTint) : MetroidvaniaPlatform(startingSize, args, colourTint), _filePath(filePath) { }
+    NovelRT::RGBAConfig& colourTint) : MetroidvaniaPlatform(args, colourTint), _filePath(filePath) { }
 
   NovelRT::NovelImageRect* MetroidvaniaImagePlatform::formRender(NovelRT::NovelRenderingService* renderer) {
-    renderObj = renderer->getImageRect(_startingSize, _filePath, _args, _colourTint);
+    renderObj = renderer->getImageRect(_filePath, _args, _colourTint);
     return renderObj;
   }
 }

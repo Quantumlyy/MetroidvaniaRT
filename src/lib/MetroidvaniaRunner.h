@@ -5,7 +5,6 @@
 
 #include "./structures/stage/MetroidvaniaStage.h"
 #include "../../dependencies/NovelRT/src/NovelRunner.h"
-#include "../../dependencies/NovelRT/src/NovelLayeringService.h"
 
 namespace MetroidvaniaRT {
   /**
@@ -18,7 +17,7 @@ namespace MetroidvaniaRT {
     // TODO: Convert to service
     MetroidvaniaRunner* addStage(MetroidvaniaStage*);
 
-    MetroidvaniaRunner(int, NovelRT::NovelLayeringService*, uint32_t targetFrameRate = 0);
+    MetroidvaniaRunner(int displayNumber, uint32_t targetFrameRate = 0);
   };
 }
 

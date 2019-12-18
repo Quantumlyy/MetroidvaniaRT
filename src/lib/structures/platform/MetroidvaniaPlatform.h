@@ -13,7 +13,6 @@ namespace MetroidvaniaRT {
    */
   class MetroidvaniaPlatform {
   protected:
-    NovelRT::GeoVector<float>& _startingSize;
     NovelRT::NovelCommonArgs& _args;
     NovelRT::RGBAConfig& _colourTint;
     // The current ID of this Platform.
@@ -35,7 +34,7 @@ namespace MetroidvaniaRT {
      */
     virtual NovelRT::NovelRenderObject* formRender(NovelRT::NovelRenderingService*) = 0;
 
-    MetroidvaniaPlatform(NovelRT::GeoVector<float>&, NovelRT::NovelCommonArgs&, NovelRT::RGBAConfig&);
+    MetroidvaniaPlatform(NovelRT::NovelCommonArgs&, NovelRT::RGBAConfig&);
   };
 }
 

@@ -20,7 +20,7 @@ namespace MetroidvaniaRT {
     NovelRT::NovelImageRect* renderObj;
     NovelRT::NovelImageRect* formRender(NovelRT::NovelRenderingService* renderer);
 
-    MetroidvaniaImagePlatform(NovelRT::GeoVector<float>&, std::string, NovelRT::NovelCommonArgs&, NovelRT::RGBAConfig&);
+    MetroidvaniaImagePlatform(std::string, NovelRT::NovelCommonArgs&, NovelRT::RGBAConfig&);
   };
 }
 

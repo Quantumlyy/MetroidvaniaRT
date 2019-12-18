@@ -1,10 +1,5 @@
 #include "MetroidvaniaStage.h"
 
-#include <vector>
-
-#include "../platform/MetroidvaniaPlatform.h"
-#include "../../../../dependencies/NovelRT/src/NovelRenderingService.h"
-
 namespace MetroidvaniaRT {
   MetroidvaniaStage::MetroidvaniaStage() { }
 

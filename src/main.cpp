@@ -7,15 +7,16 @@
 #include "../dependencies/NovelRT/src/NovelLayeringService.h"
 
 int main(int argc, char* argv[]) {
-  auto runner = new MetroidvaniaRT::MetroidvaniaRunner(0, new NovelRT::NovelLayeringService(), 10);
+  auto runner = new MetroidvaniaRT::MetroidvaniaRunner(0, 10);
 
   auto fillArgs = NovelRT::NovelCommonArgs();
   fillArgs.layer = 0;
   fillArgs.orderInLayer = 0;
   fillArgs.startingPosition.setX(1920 / 2);
   fillArgs.startingPosition.setY(1080 / 2);
+  fillArgs.startingScale = NovelRT::GeoVector<float>(456, 618);
   auto stage = new MetroidvaniaRT::MetroidvaniaStage();
-  auto platform = new MetroidvaniaRT::MetroidvaniaFillPlatform(NovelRT::GeoVector<float>(456, 618), NovelRT::RGBAConfig(255, 0, 255, 255), fillArgs);
+  auto platform = new MetroidvaniaRT::MetroidvaniaFillPlatform(NovelRT::RGBAConfig(255, 0, 255, 255), fillArgs);
 
   stage->addPlatform(platform);
   runner->addStage(stage);
