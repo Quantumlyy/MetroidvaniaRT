@@ -51,6 +51,14 @@ set(METROIDVANIART_SOURCES
   src/lib/structures/stage/MetroidvaniaStage.cpp
 )
 
+set(METROIDVANIART_C_HEADERS
+  src/lib_C/MetroidvaniaRunner_C.h
+)
+
+set(METROIDVANIART_C_SOURCES
+  src/lib_C/MetroidvaniaRunner_C.cpp
+)
+
 set(METROIDVANIART_LINK_LIBRARIES
   NovelRTLib
 )
@@ -70,13 +78,6 @@ set(METROIDVANIART_EXECUTABLE_LINK_LIBRARIES
 
 add_executable(MetroidvaniaRT ${METROIDVANIART_EXECUTABLE_HEADERS} ${METROIDVANIART_EXECUTABLE_SOURCES})
 target_link_libraries(MetroidvaniaRT ${METROIDVANIART_EXECUTABLE_LINK_LIBRARIES})
-
-set(METROIDVANIART_C_EXECUTABLE_SOURCES
-  src/main.c
-)
-
-add_executable(MetroidvaniaRT_C ${METROIDVANIART_C_EXECUTABLE_SOURCES})
-target_link_libraries(MetroidvaniaRT_C ${METROIDVANIART_EXECUTABLE_LINK_LIBRARIES})
 
 if (WIN32)
   set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
