@@ -7,7 +7,7 @@
 #include "../dependencies/NovelRT/src/NovelLayeringService.h"
 
 int main(int argc, char* argv[]) {
-  auto runner = new MetroidvaniaRT::MetroidvaniaRunner(0, 10);
+  auto runner = new MetroidvaniaRT::MetroidvaniaRunner(0);
 
   auto fillArgs = NovelRT::NovelCommonArgs();
   fillArgs.layer = 0;

@@ -2,6 +2,7 @@
 #define METROIDVANIART_METROIDVANIARUNNER_H
 
 #include <vector>
+#include <string>
 
 #include "./structures/stage/MetroidvaniaStage.h"
 #include "../../dependencies/NovelRT/src/NovelRunner.h"
@@ -17,7 +18,7 @@ namespace MetroidvaniaRT {
     // TODO: Convert to service
     MetroidvaniaRunner* addStage(MetroidvaniaStage*);
 
-    MetroidvaniaRunner(int displayNumber, uint32_t targetFrameRate = 0);
+    MetroidvaniaRunner(int displayNumber, const std::string& windowTitle = "MetroidvaniaRTTest", uint32_t targetFrameRate = 0);
   };
 }
 
