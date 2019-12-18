@@ -22,6 +22,8 @@ int main(int argc, char* argv[]) {
   runner->addStage(stage);
   runner->stages[0]->renderStage(runner->getRenderer());
 
+  // runner->getDebugService()->setIsFpsCounterVisible(true);
+
   runner->runNovel();
   return EXIT_SUCCESS;
 }

@@ -16,7 +16,7 @@ namespace MetroidvaniaRT {
     std::vector<MetroidvaniaStage*> stages;
 
     // TODO: Convert to service
-    MetroidvaniaRunner* addStage(MetroidvaniaStage*);
+    MetroidvaniaRunner* addStage(MetroidvaniaStage* stage);
 
     MetroidvaniaRunner(int displayNumber, const std::string& windowTitle = "MetroidvaniaRTTest", uint32_t targetFrameRate = 0);
   };

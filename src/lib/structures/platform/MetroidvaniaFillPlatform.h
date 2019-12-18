@@ -16,7 +16,7 @@ namespace MetroidvaniaRT {
     NovelRT::NovelBasicFillRect* renderObj;
     NovelRT::NovelBasicFillRect* formRender(NovelRT::NovelRenderingService* renderer);
 
-    MetroidvaniaFillPlatform(NovelRT::RGBAConfig&, NovelRT::NovelCommonArgs&);
+    MetroidvaniaFillPlatform(NovelRT::RGBAConfig& colourFill, NovelRT::NovelCommonArgs& args);
   };
 }
 

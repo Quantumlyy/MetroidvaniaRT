@@ -15,12 +15,12 @@ namespace MetroidvaniaRT {
    */
   class MetroidvaniaImagePlatform : public MetroidvaniaPlatform {
   protected:
-    std::string _filePath;
+    const std::string& _filePath;
   public:
     NovelRT::NovelImageRect* renderObj;
     NovelRT::NovelImageRect* formRender(NovelRT::NovelRenderingService* renderer);
 
-    MetroidvaniaImagePlatform(std::string, NovelRT::NovelCommonArgs&, NovelRT::RGBAConfig&);
+    MetroidvaniaImagePlatform(const std::string& filePath, NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
   };
 }
 

@@ -32,9 +32,9 @@ namespace MetroidvaniaRT {
      * @param renderer The RenderingService on which the Platform should be rendered.
      * @returns The rendered object.
      */
-    virtual NovelRT::NovelRenderObject* formRender(NovelRT::NovelRenderingService*) = 0;
+    virtual NovelRT::NovelRenderObject* formRender(NovelRT::NovelRenderingService* renderer) = 0;
 
-    MetroidvaniaPlatform(NovelRT::NovelCommonArgs&, NovelRT::RGBAConfig&);
+    MetroidvaniaPlatform(NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
   };
 }
 

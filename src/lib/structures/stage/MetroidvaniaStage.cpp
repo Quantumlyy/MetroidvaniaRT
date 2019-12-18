@@ -1,7 +1,7 @@
 #include "MetroidvaniaStage.h"
 
 namespace MetroidvaniaRT {
-  MetroidvaniaStage::MetroidvaniaStage() { }
+  MetroidvaniaStage::MetroidvaniaStage(int id) : _id(id) { }
 
   int MetroidvaniaStage::getId() const {
     return _id;
@@ -15,12 +15,11 @@ namespace MetroidvaniaRT {
     return this;
   }
   void MetroidvaniaStage::renderPlatforms(NovelRT::NovelRenderingService* renderer) {
-    for each (MetroidvaniaPlatform* platform in platforms)
-    {
+    for (MetroidvaniaPlatform* platform : platforms)
       platform->formRender(renderer);
-    }
   }
   void MetroidvaniaStage::renderStage(NovelRT::NovelRenderingService* renderer) {
     renderPlatforms(renderer);
+    raiseFinishedRender();
   }
 }

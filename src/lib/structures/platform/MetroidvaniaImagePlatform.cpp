@@ -1,7 +1,7 @@
 #include "MetroidvaniaImagePlatform.h"
 
 namespace MetroidvaniaRT {
-  MetroidvaniaImagePlatform::MetroidvaniaImagePlatform(std::string filePath,
+  MetroidvaniaImagePlatform::MetroidvaniaImagePlatform(const std::string& filePath,
     NovelRT::NovelCommonArgs& args,
     NovelRT::RGBAConfig& colourTint) : MetroidvaniaPlatform(args, colourTint), _filePath(filePath) { }
 
