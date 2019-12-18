@@ -37,6 +37,7 @@ find_package(Doxygen QUIET)
 
 set(METROIDVANIART_HEADERS
   src/lib/MetroidvaniaRunner.h
+  src/lib/MetroidvaniaStageService.h
   src/lib/structures/platform/MetroidvaniaPlatform.h
   src/lib/structures/platform/MetroidvaniaImagePlatform.h
   src/lib/structures/platform/MetroidvaniaFillPlatform.h
@@ -45,6 +46,7 @@ set(METROIDVANIART_HEADERS
 
 set(METROIDVANIART_SOURCES
 	src/lib/MetroidvaniaRunner.cpp
+  src/lib/MetroidvaniaStageService.cpp
   src/lib/structures/platform/MetroidvaniaPlatform.cpp
   src/lib/structures/platform/MetroidvaniaImagePlatform.cpp
   src/lib/structures/platform/MetroidvaniaFillPlatform.cpp

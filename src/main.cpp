@@ -4,7 +4,6 @@
 #include "../dependencies/NovelRT/src/NovelCommonArgs.h"
 #include "../dependencies/NovelRT/src/RGBAConfig.h"
 #include "../dependencies/NovelRT/src/GeoVector.h"
-#include "../dependencies/NovelRT/src/NovelLayeringService.h"
 
 int main(int argc, char* argv[]) {
   auto runner = new MetroidvaniaRT::MetroidvaniaRunner(0);
@@ -20,7 +19,14 @@ int main(int argc, char* argv[]) {
 
   stage->addPlatform(platform);
   runner->addStage(stage);
-  runner->stages[0]->renderStage(runner->getRenderer());
+
+  auto stagee = runner->stages[0];
+
+  stagee->renderStage(runner->getRenderer());
+
+  stagee->subscribeToFinishedRender([&runner] {
+    runner->getRenderer()->setWindowTitle("Done");
+  });
 
   // runner->getDebugService()->setIsFpsCounterVisible(true);
 
