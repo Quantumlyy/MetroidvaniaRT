@@ -4,19 +4,21 @@
 #include <vector>
 
 #include "./structures/stage/MetroidvaniaStage.h"
+#include "./structures/platform/MetroidvaniaPlatform.h"
 #include "../../dependencies/NovelRT/src/NovelRenderingService.h"
 
 namespace MetroidvaniaRT {
   class MetroidvaniaStageService {
   private:
-    std::unique_ptr<NovelRT::NovelRenderingService> _renderer;
+    NovelRT::NovelRenderingService* _renderer;
   public:
     std::vector<MetroidvaniaStage*> stages;
 
     MetroidvaniaStageService* addStage(MetroidvaniaStage* stage);
-    MetroidvaniaStage* renderStage(const int& stage);
+    MetroidvaniaStageService* addStagePlatform(int stageEntry, MetroidvaniaPlatform* platform);
+    MetroidvaniaStage* renderStage(int stageEntry);
 
-    MetroidvaniaStageService(std::unique_ptr<NovelRT::NovelRenderingService> renderer);
+    MetroidvaniaStageService(NovelRT::NovelRenderingService* renderer);
   };
 }
 

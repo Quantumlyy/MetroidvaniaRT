@@ -5,6 +5,7 @@
 #include <string>
 
 #include "./structures/stage/MetroidvaniaStage.h"
+#include "./MetroidvaniaStageService.h"
 #include "../../dependencies/NovelRT/src/NovelRunner.h"
 
 namespace MetroidvaniaRT {
@@ -12,6 +13,8 @@ namespace MetroidvaniaRT {
    * The base class for creating a Metroidvania style game.
    */
   class MetroidvaniaRunner : public NovelRT::NovelRunner {
+  private:
+    MetroidvaniaStageService _stageService;
   public:
     std::vector<MetroidvaniaStage*> stages;
 
