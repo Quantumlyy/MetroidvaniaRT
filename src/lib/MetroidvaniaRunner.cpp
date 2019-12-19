@@ -3,10 +3,9 @@
 namespace MetroidvaniaRT {
 
   MetroidvaniaRunner::MetroidvaniaRunner(int displayNumber, const std::string& windowTitle, uint32_t targetFrameRate)
-    : NovelRT::NovelRunner(displayNumber, windowTitle, targetFrameRate), _stageService(getRenderer()) { }
+    : NovelRT::NovelRunner(displayNumber, windowTitle, targetFrameRate), _stageService(new MetroidvaniaStageService(getRenderer())) { }
 
-  MetroidvaniaRunner* MetroidvaniaRunner::addStage(MetroidvaniaStage* stage) {
-    stages.push_back(stage);
-    return this;
+  MetroidvaniaStageService* MetroidvaniaRunner::getStageService() const {
+    return _stageService.get();
   }
 }

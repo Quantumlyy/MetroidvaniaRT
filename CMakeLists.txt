@@ -54,10 +54,12 @@ set(METROIDVANIART_SOURCES
 )
 
 set(METROIDVANIART_C_HEADERS
+  ${METROIDVANIART_HEADERS}
   src/lib_C/MetroidvaniaRunner_C.h
 )
 
 set(METROIDVANIART_C_SOURCES
+  ${METROIDVANIART_SOURCES}
   src/lib_C/MetroidvaniaRunner_C.cpp
 )
 

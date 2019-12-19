@@ -1,10 +1,8 @@
 #ifndef METROIDVANIART_METROIDVANIARUNNER_H
 #define METROIDVANIART_METROIDVANIARUNNER_H
 
-#include <vector>
 #include <string>
 
-#include "./structures/stage/MetroidvaniaStage.h"
 #include "./MetroidvaniaStageService.h"
 #include "../../dependencies/NovelRT/src/NovelRunner.h"
 
@@ -14,14 +12,11 @@ namespace MetroidvaniaRT {
    */
   class MetroidvaniaRunner : public NovelRT::NovelRunner {
   private:
-    MetroidvaniaStageService _stageService;
+    std::unique_ptr<MetroidvaniaStageService> _stageService;
   public:
-    std::vector<MetroidvaniaStage*> stages;
+    explicit MetroidvaniaRunner(int displayNumber, const std::string& windowTitle = "MetroidvaniaRTTest", uint32_t targetFrameRate = 0);
 
-    // TODO: Convert to service
-    MetroidvaniaRunner* addStage(MetroidvaniaStage* stage);
-
-    MetroidvaniaRunner(int displayNumber, const std::string& windowTitle = "MetroidvaniaRTTest", uint32_t targetFrameRate = 0);
+    MetroidvaniaStageService* getStageService() const;
   };
 }
 
