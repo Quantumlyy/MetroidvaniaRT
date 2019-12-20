@@ -56,11 +56,13 @@ set(METROIDVANIART_SOURCES
 set(METROIDVANIART_C_HEADERS
   ${METROIDVANIART_HEADERS}
   src/lib_C/MetroidvaniaRunner_C.h
+  src/lib_C/MetroidvaniaStageService_C.h
 )
 
 set(METROIDVANIART_C_SOURCES
   ${METROIDVANIART_SOURCES}
   src/lib_C/MetroidvaniaRunner_C.cpp
+  src/lib_C/MetroidvaniaStageService_C.cpp
 )
 
 set(METROIDVANIART_LINK_LIBRARIES

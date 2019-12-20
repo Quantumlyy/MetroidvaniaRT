@@ -1,6 +1,9 @@
 #ifndef METROIDVANIART_METROIDVANIARUNNER_C_H
 #define METROIDVANIART_METROIDVANIARUNNER_C_H
 
+#include "MetroidvaniaStageService_C.h"
+#include "../lib/MetroidvaniaRunner.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -9,6 +12,8 @@ extern "C" {
 
   MetroidvaniaRunner_t* createRunner(int);
   void destroyRunner(MetroidvaniaRunner_t*);
+
+  MetroidvaniaStageService_t* getRunnerStageService(MetroidvaniaRunner_t*);
 
   int runNovel(MetroidvaniaRunner_t*);
 
