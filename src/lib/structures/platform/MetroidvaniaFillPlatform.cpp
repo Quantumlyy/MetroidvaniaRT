@@ -6,6 +6,7 @@ namespace MetroidvaniaRT {
 
   NovelRT::NovelBasicFillRect* MetroidvaniaFillPlatform::formRender(NovelRT::NovelRenderingService* renderer) {
     renderObj = renderer->getBasicFillRect(_colourTint, _args);
+    raiseStageRendered();
     return renderObj;
   }
 }

@@ -1,6 +1,7 @@
 #ifndef METROIDVANIART_METROIDVANIAPLATFORM_H
 #define METROIDVANIART_METROIDVANIAPLATFORM_H
 
+#include "../../../../dependencies/NovelRT/src/NovelUtilities.h"
 #include "../../../../dependencies/NovelRT/src/NovelCommonArgs.h"
 #include "../../../../dependencies/NovelRT/src/NovelRenderObject.h"
 #include "../../../../dependencies/NovelRT/src/NovelRenderingService.h"
@@ -12,6 +13,7 @@ namespace MetroidvaniaRT {
    * The base class for creating a game platform in a stage.
    */
   class MetroidvaniaPlatform {
+    NOVELRT_PARAMETERLESS_EVENT(StageRendered)
   protected:
     NovelRT::NovelCommonArgs& _args;
     NovelRT::RGBAConfig& _colourTint;
@@ -19,12 +21,18 @@ namespace MetroidvaniaRT {
     int _id;
   public:
     // The object that was rendered when formRender was called.
-    NovelRT::NovelRenderObject* renderObj;
+    NovelRT::NovelRenderObject* renderOb;
 
     // Gets the current ID of this Platform.
     virtual int getId() const;
     // Sets the current ID of this Platform.
     virtual void setId(int value);
+
+    virtual int getLayer() const;
+    virtual void setLayer(int value);
+
+    virtual int getLayerOrder() const;
+    virtual void setLayerOrder(int value);
 
     /**
      * The abstract method for rendering this Platform.
