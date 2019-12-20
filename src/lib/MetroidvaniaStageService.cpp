@@ -20,4 +20,9 @@ namespace MetroidvaniaRT {
     return stage;
   }
 
+  MetroidvaniaStageService::~MetroidvaniaStageService() {
+    for (const auto* stage : stages)
+      delete stage;
+  }
+
 }

@@ -22,4 +22,9 @@ namespace MetroidvaniaRT {
     renderPlatforms(renderer);
     raiseFinishedRender();
   }
+
+  MetroidvaniaStage::~MetroidvaniaStage() {
+    for (const auto* platform : platforms)
+      delete platform;
+  }
 }

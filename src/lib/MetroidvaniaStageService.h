@@ -19,6 +19,7 @@ namespace MetroidvaniaRT {
     MetroidvaniaStage* renderStage(int stageEntry);
 
     MetroidvaniaStageService(NovelRT::NovelRenderingService* renderer);
+    ~MetroidvaniaStageService();
   };
 }
 

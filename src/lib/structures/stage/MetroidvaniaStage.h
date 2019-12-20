@@ -26,6 +26,7 @@ namespace MetroidvaniaRT {
     void renderStage(NovelRT::NovelRenderingService* renderer);
 
     MetroidvaniaStage(int id = 0);
+    ~MetroidvaniaStage();
   };
 }
 
