@@ -12,17 +12,27 @@ namespace MetroidvaniaRT {
    * The base class for a Stage.
    */
   class MetroidvaniaStage {
-    NOVELRT_PARAMETERLESS_EVENT(FinishedRender)
+    NOVELRT_PARAMETERLESS_EVENT(StageRendered)
   protected:
     int _id;
+    int _computedHighestLayer;
+    int _computedLowestLayer;
+    int _computedHighestLayerOrder;
+    int _computedLowestLayerOrder;
   public:
     std::vector<MetroidvaniaPlatform*> platforms;
 
     virtual int getId() const;
     virtual void setId(int value);
 
+    virtual int getComputedHighestLayer() const;
+    virtual int getComputedLowestLayer() const;
+    virtual int getComputedHighestLayerOrder() const;
+    virtual int getComputedLowestLayerOrder() const;
+
     MetroidvaniaStage* addPlatform(MetroidvaniaPlatform* platform);
     void renderPlatforms(NovelRT::NovelRenderingService* renderer);
+    void computePlatforms();
     void renderStage(NovelRT::NovelRenderingService* renderer);
 
     MetroidvaniaStage(int id = 0);

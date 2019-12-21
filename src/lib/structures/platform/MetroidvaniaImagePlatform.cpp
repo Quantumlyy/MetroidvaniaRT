@@ -7,7 +7,7 @@ namespace MetroidvaniaRT {
 
   NovelRT::NovelImageRect* MetroidvaniaImagePlatform::formRender(NovelRT::NovelRenderingService* renderer) {
     renderObj = renderer->getImageRect(_filePath, _args, _colourTint);
-    raiseStageRendered();
+    raisePlatformRendered();
     return renderObj;
   }
 }

@@ -9,7 +9,7 @@ namespace MetroidvaniaRT {
    * The base class for creating a game platform in a stage.
    */
   class MetroidvaniaPlatform {
-    NOVELRT_PARAMETERLESS_EVENT(StageRendered)
+    NOVELRT_PARAMETERLESS_EVENT(PlatformRendered)
   protected:
     NovelRT::NovelCommonArgs& _args;
     NovelRT::RGBAConfig& _colourTint;
