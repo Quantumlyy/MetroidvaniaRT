@@ -2,10 +2,7 @@
 #define METROIDVANIART_METROIDVANIAFILLPLATFORM_H
 
 #include "MetroidvaniaPlatform.h"
-#include "../../../../dependencies/NovelRT/src/NovelCommonArgs.h"
-#include "../../../../dependencies/NovelRT/src/NovelBasicFillRect.h"
-#include "../../../../dependencies/NovelRT/src/GeoVector.h"
-#include "../../../../dependencies/NovelRT/src/RGBAConfig.h"
+#include "../../../../dependencies/NovelRT/src/NovelRT.h"
 
 namespace MetroidvaniaRT {
   /**

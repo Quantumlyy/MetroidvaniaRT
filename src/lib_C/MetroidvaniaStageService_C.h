@@ -1,6 +1,8 @@
 #ifndef METROIDVANIART_METROIDVANIASTAGESERVICE_C_H
 #define METROIDVANIART_METROIDVANIASTAGESERVICE_C_H
 
+#include "../../include/MetroidvaniaRT.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

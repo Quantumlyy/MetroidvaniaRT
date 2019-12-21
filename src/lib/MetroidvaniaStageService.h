@@ -5,7 +5,7 @@
 
 #include "./structures/stage/MetroidvaniaStage.h"
 #include "./structures/platform/MetroidvaniaPlatform.h"
-#include "../../dependencies/NovelRT/src/NovelRenderingService.h"
+#include "../../dependencies/NovelRT/src/NovelRT.h"
 
 namespace MetroidvaniaRT {
   class MetroidvaniaStageService {

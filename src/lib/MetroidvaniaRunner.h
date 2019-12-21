@@ -4,7 +4,7 @@
 #include <string>
 
 #include "./MetroidvaniaStageService.h"
-#include "../../dependencies/NovelRT/src/NovelRunner.h"
+#include "../../dependencies/NovelRT/src/NovelRT.h"
 
 namespace MetroidvaniaRT {
   /**

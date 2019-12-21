@@ -36,6 +36,7 @@ file(COPY ${METROIDVANIART_RESOURCES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 find_package(Doxygen QUIET)
 
 set(METROIDVANIART_HEADERS
+  include/MetroidvaniaRT.h
   src/lib/MetroidvaniaRunner.h
   src/lib/MetroidvaniaStageService.h
   src/lib/structures/platform/MetroidvaniaPlatform.h
@@ -113,7 +114,6 @@ if (DOXYGEN_FOUND)
   set(DOXYFILE_METROIDVANIART_OUT ${DOXYGEN_METROIDVANIART_OUTPUT_DIR}/Doxyfile)
 
   set(DOCS_METROIDVANIART_IMAGES
-    novel-chan_doxy.png
   )
   set(DOCS_METROIDVANIART_RESOURCES
     ${DOCS_METROIDVANIART_IMAGES}

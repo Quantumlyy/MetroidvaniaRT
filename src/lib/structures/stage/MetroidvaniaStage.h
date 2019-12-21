@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "../platform/MetroidvaniaPlatform.h"
+#include "../../../../dependencies/NovelRT/src/NovelRT.h"
 #include "../../../../dependencies/NovelRT/src/NovelUtilities.h"
-#include "../../../../dependencies/NovelRT/src/NovelRenderingService.h"
 
 namespace MetroidvaniaRT {
   /**

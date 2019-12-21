@@ -2,7 +2,7 @@
 #define METROIDVANIART_METROIDVANIARUNNER_C_H
 
 #include "MetroidvaniaStageService_C.h"
-#include "../lib/MetroidvaniaRunner.h"
+#include "../../include/MetroidvaniaRT.h"
 
 #ifdef __cplusplus
 extern "C" {

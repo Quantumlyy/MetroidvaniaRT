@@ -1,12 +1,8 @@
 #ifndef METROIDVANIART_METROIDVANIAPLATFORM_H
 #define METROIDVANIART_METROIDVANIAPLATFORM_H
 
+#include "../../../../dependencies/NovelRT/src/NovelRT.h"
 #include "../../../../dependencies/NovelRT/src/NovelUtilities.h"
-#include "../../../../dependencies/NovelRT/src/NovelCommonArgs.h"
-#include "../../../../dependencies/NovelRT/src/NovelRenderObject.h"
-#include "../../../../dependencies/NovelRT/src/NovelRenderingService.h"
-#include "../../../../dependencies/NovelRT/src/GeoVector.h"
-#include "../../../../dependencies/NovelRT/src/RGBAConfig.h"
 
 namespace MetroidvaniaRT {
   /**

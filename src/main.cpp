@@ -1,9 +1,5 @@
-#include "./lib/MetroidvaniaRunner.h"
-#include "./lib/structures/stage/MetroidvaniaStage.h"
-#include "./lib/structures/platform/MetroidvaniaFillPlatform.h"
-#include "../dependencies/NovelRT/src/NovelCommonArgs.h"
-#include "../dependencies/NovelRT/src/RGBAConfig.h"
-#include "../dependencies/NovelRT/src/GeoVector.h"
+#include "../dependencies/NovelRT/src/NovelRT.h"
+#include "../include/MetroidvaniaRT.h"
 
 int main(int argc, char* argv[]) {
   auto runner = new MetroidvaniaRT::MetroidvaniaRunner(0);
