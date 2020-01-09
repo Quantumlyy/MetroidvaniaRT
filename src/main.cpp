@@ -24,8 +24,8 @@ int main(int argc, char* argv[]) {
   IIPlatform2.id = IIPlatform1.id++;
 
   runner->getStageService()->addStage(std::make_unique<MetroidvaniaRT::MetroidvaniaStage>(IIStage));
-  runner->getStageService()->addStagePlatform(0, std::make_unique<MetroidvaniaRT::MetroidvaniaFillPlatform>(IIPlatform1, NovelRT::RGBAConfig(255, 0, 255, 255), fillArgs));
-  runner->getStageService()->addStagePlatform(0, std::make_unique<MetroidvaniaRT::MetroidvaniaFillPlatform>(IIPlatform2, NovelRT::RGBAConfig(210, 45, 56, 255), fill2args));
+  runner->getStageService()->addStagePlatform(1, std::make_unique<MetroidvaniaRT::MetroidvaniaFillPlatform>(IIPlatform1, NovelRT::RGBAConfig(255, 0, 255, 255), fillArgs));
+  runner->getStageService()->addStagePlatform(1, std::make_unique<MetroidvaniaRT::MetroidvaniaFillPlatform>(IIPlatform2, NovelRT::RGBAConfig(210, 45, 56, 255), fill2args));
   runner->getStageService()->renderStage(runner->getRenderer(), 1);
 
   runner->runNovel();

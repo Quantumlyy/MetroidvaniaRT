@@ -4,9 +4,7 @@ namespace MetroidvaniaRT {
   MetroidvaniaStage::MetroidvaniaStage(MetroidvaniaIdentificationInformation& identificationInformation) :
     _II(identificationInformation),
     _computedHighestLayer(0),
-    _computedLowestLayer(0) {
-    computePlatformLayers();
-  }
+    _computedLowestLayer(0) { }
 
   MetroidvaniaIdentificationInformation& MetroidvaniaStage::getII() const {
     return _II;
@@ -19,18 +17,18 @@ namespace MetroidvaniaRT {
     return _computedLowestLayer;
   }
 
-  void MetroidvaniaStage::checkIIConfliction(std::unique_ptr<MetroidvaniaPlatform> insertedPlatform) {
-    auto insertedII = insertedPlatform.get()->getII();
+  void MetroidvaniaStage::checkIIConfliction(MetroidvaniaPlatform* insertedPlatform) {
+    auto insertedII = insertedPlatform->getII();
     for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms) {
       auto currentII = platform.get()->getII();
-
-      if (currentII.id == insertedII.id) throw "Platform has a conflicting ID";
-      if (currentII.name == insertedII.name) throw "Platform has a conflicting name";
+      
+      if (currentII.id == insertedII.id) throw std::logic_error("Platform has a conflicting ID");
+      if ((currentII.name == insertedII.name) && (insertedII.name != "")) throw std::logic_error("Platform has a conflicting name");
     }
   }
 
   MetroidvaniaStage* MetroidvaniaStage::addPlatform(std::unique_ptr<MetroidvaniaPlatform> platform) {
-    checkIIConfliction(std::move(platform));
+    checkIIConfliction(platform.get());
     platforms.push_back(std::move(platform));
     computePlatformLayers();
     return this;
@@ -43,8 +41,9 @@ namespace MetroidvaniaRT {
 
   void MetroidvaniaStage::computePlatformLayers() {
     for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms) {
-      if (platform->getLayer() > _computedHighestLayer) _computedHighestLayer = platform->getLayer();
-      if (platform->getLayer() < _computedLowestLayer) _computedLowestLayer = platform->getLayer();
+      auto layer = platform.get()->getLayer();
+      if (layer  > getComputedHighestLayer()) _computedHighestLayer = layer;
+      if (layer < getComputedLowestLayer()) _computedLowestLayer = layer;
     }
   }
 

@@ -2,6 +2,7 @@
 #define METROIDVANIART_METROIDVANIASTAGE_H
 
 #include <vector>
+#include <stdexcept>
 
 #include "../MetroidvaniaIdentificationInformation.h"
 #include "../platform/MetroidvaniaPlatform.h"
@@ -26,7 +27,7 @@ namespace MetroidvaniaRT {
     virtual int getComputedHighestLayer() const;
     virtual int getComputedLowestLayer() const;
 
-    virtual void checkIIConfliction(std::unique_ptr<MetroidvaniaPlatform> insertedPlatform);
+    virtual void checkIIConfliction(MetroidvaniaPlatform* insertedPlatform);
 
     MetroidvaniaStage* addPlatform(std::unique_ptr<MetroidvaniaPlatform> platform);
     void renderPlatforms(NovelRT::NovelRenderingService* renderer);

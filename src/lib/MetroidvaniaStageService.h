@@ -12,7 +12,7 @@
 namespace MetroidvaniaRT {
   struct findingComparator {
     bool operator()(const MetroidvaniaIdentificationInformation& x, const MetroidvaniaIdentificationInformation& y) const {
-      return (x.id == y.id) || (x.name == y.name);
+      return (x.id > y.id);
     }
   };
 
