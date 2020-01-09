@@ -2,6 +2,7 @@
 #define METROIDVANIART_METROIDVANIAFILLPLATFORM_H
 
 #include "MetroidvaniaPlatform.h"
+#include "../MetroidvaniaIdentificationInformation.h"
 #include "../../../../dependencies/NovelRT/src/NovelRT.h"
 
 namespace MetroidvaniaRT {
@@ -11,9 +12,9 @@ namespace MetroidvaniaRT {
   class MetroidvaniaFillPlatform : public MetroidvaniaPlatform {
   public:
     NovelRT::NovelBasicFillRect* renderObj;
-    NovelRT::NovelBasicFillRect* formRender(NovelRT::NovelRenderingService* renderer);
+    NovelRT::NovelBasicFillRect* formRender(NovelRT::NovelRenderingService* renderer) final;
 
-    MetroidvaniaFillPlatform(NovelRT::RGBAConfig& colourFill, NovelRT::NovelCommonArgs& args);
+    MetroidvaniaFillPlatform(MetroidvaniaIdentificationInformation& identificationInformation, NovelRT::RGBAConfig& colourFill, NovelRT::NovelCommonArgs& args);
   };
 }
 

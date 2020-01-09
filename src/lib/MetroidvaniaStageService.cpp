@@ -2,27 +2,43 @@
 
 namespace MetroidvaniaRT {
 
-  MetroidvaniaStageService::MetroidvaniaStageService(NovelRT::NovelRenderingService* renderer) : _renderer(renderer) { }
+  MetroidvaniaStageService::MetroidvaniaStageService() { }
 
-  MetroidvaniaStageService* MetroidvaniaStageService::addStagePlatform(int stageEntry, MetroidvaniaPlatform* platform) {
-    MetroidvaniaStage* stage = stages[stageEntry];
-    stage->addPlatform(platform);
-    return this;
-  }
-  MetroidvaniaStageService* MetroidvaniaStageService::addStage(MetroidvaniaStage* stage) {
-    stages.push_back(stage);
+  MetroidvaniaStageService* MetroidvaniaStageService::addStage(std::unique_ptr<MetroidvaniaStage> stage) {
+    stages.insert(std::pair(stage.get()->getII(), std::move(stage)));
     return this;
   }
 
-  MetroidvaniaStage* MetroidvaniaStageService::renderStage(int stageEntry) {
-    MetroidvaniaStage* stage = stages[stageEntry];
-    stage->renderStage(_renderer);
+  MetroidvaniaStage* MetroidvaniaStageService::getStage(int _id) {
+    auto opts = MetroidvaniaIdentificationInformation();
+    opts.id = _id;
+    return stages.at(opts).get();
+  }
+  MetroidvaniaStage* MetroidvaniaStageService::getStage(const std::string& _name) {
+    auto opts = MetroidvaniaIdentificationInformation();
+    opts.name = _name;
+    return stages.at(opts).get();
+  }
+
+  MetroidvaniaStageService* MetroidvaniaStageService::addStagePlatform(int stageId, std::unique_ptr<MetroidvaniaPlatform> platform) {
+    auto stage = getStage(stageId);
+    stage->addPlatform(std::move(platform));
+    return this;
+  }
+  MetroidvaniaStageService* MetroidvaniaStageService::addStagePlatform(const std::string& stageName, std::unique_ptr<MetroidvaniaPlatform> platform) {
+    auto stage = getStage(stageName);
+    stage->addPlatform(std::move(platform));
+    return this;
+  }
+
+  MetroidvaniaStage* MetroidvaniaStageService::renderStage(NovelRT::NovelRenderingService* renderer, int stageId) {
+    auto stage = getStage(stageId);
+    stage->renderStage(renderer);
     return stage;
   }
-
-  MetroidvaniaStageService::~MetroidvaniaStageService() {
-    for (const auto* stage : stages)
-      delete stage;
+  MetroidvaniaStage* MetroidvaniaStageService::renderStage(NovelRT::NovelRenderingService* renderer, const std::string& stageName) {
+    auto stage = getStage(stageName);
+    stage->renderStage(renderer);
+    return stage;
   }
-
 }

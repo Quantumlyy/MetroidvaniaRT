@@ -1,6 +1,7 @@
 #ifndef METROIDVANIART_METROIDVANIAPLATFORM_H
 #define METROIDVANIART_METROIDVANIAPLATFORM_H
 
+#include "../MetroidvaniaIdentificationInformation.h"
 #include "../../../../dependencies/NovelRT/src/NovelRT.h"
 #include "../../../../dependencies/NovelRT/src/NovelUtilities.h"
 
@@ -13,22 +14,17 @@ namespace MetroidvaniaRT {
   protected:
     NovelRT::NovelCommonArgs& _args;
     NovelRT::RGBAConfig& _colourTint;
-    // The current ID of this Platform.
-    int _id;
+    // The current identification information of this Platform.
+    MetroidvaniaIdentificationInformation& _II;
   public:
     // The object that was rendered when formRender was called.
     NovelRT::NovelRenderObject* renderOb;
 
-    // Gets the current ID of this Platform.
-    virtual int getId() const;
-    // Sets the current ID of this Platform.
-    virtual void setId(int value);
+    // Gets the current II of this Platform.
+    virtual MetroidvaniaIdentificationInformation& getII() const;
 
     virtual int getLayer() const;
     virtual void setLayer(int value);
-
-    virtual int getLayerOrder() const;
-    virtual void setLayerOrder(int value);
 
     /**
      * The abstract method for rendering this Platform.
@@ -38,7 +34,7 @@ namespace MetroidvaniaRT {
      */
     virtual NovelRT::NovelRenderObject* formRender(NovelRT::NovelRenderingService* renderer) = 0;
 
-    MetroidvaniaPlatform(NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
+    MetroidvaniaPlatform(MetroidvaniaIdentificationInformation& identificationInformation, NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
   };
 }
 

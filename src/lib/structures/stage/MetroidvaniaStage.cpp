@@ -1,18 +1,15 @@
 #include "MetroidvaniaStage.h"
 
 namespace MetroidvaniaRT {
-  MetroidvaniaStage::MetroidvaniaStage(int id) :
-    _id(id),
+  MetroidvaniaStage::MetroidvaniaStage(MetroidvaniaIdentificationInformation& identificationInformation) :
+    _II(identificationInformation),
     _computedHighestLayer(0),
-    _computedLowestLayer(0),
-    _computedHighestLayerOrder(0),
-    _computedLowestLayerOrder(0) { }
-
-  int MetroidvaniaStage::getId() const {
-    return _id;
+    _computedLowestLayer(0) {
+    computePlatformLayers();
   }
-  void MetroidvaniaStage::setId(int value) {
-    _id = value;
+
+  MetroidvaniaIdentificationInformation& MetroidvaniaStage::getII() const {
+    return _II;
   }
 
   int MetroidvaniaStage::getComputedHighestLayer() const {
@@ -21,39 +18,39 @@ namespace MetroidvaniaRT {
   int MetroidvaniaStage::getComputedLowestLayer() const {
     return _computedLowestLayer;
   }
-  int MetroidvaniaStage::getComputedHighestLayerOrder() const {
-    return _computedHighestLayerOrder;
-  }
-  int MetroidvaniaStage::getComputedLowestLayerOrder() const {
-    return _computedLowestLayerOrder;
+
+  void MetroidvaniaStage::checkIIConfliction(std::unique_ptr<MetroidvaniaPlatform> insertedPlatform) {
+    auto insertedII = insertedPlatform.get()->getII();
+    for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms) {
+      auto currentII = platform.get()->getII();
+
+      if (currentII.id == insertedII.id) throw "Platform has a conflicting ID";
+      if (currentII.name == insertedII.name) throw "Platform has a conflicting name";
+    }
   }
 
-  MetroidvaniaStage* MetroidvaniaStage::addPlatform(MetroidvaniaPlatform* platform) {
-    platforms.push_back(platform);
+  MetroidvaniaStage* MetroidvaniaStage::addPlatform(std::unique_ptr<MetroidvaniaPlatform> platform) {
+    checkIIConfliction(std::move(platform));
+    platforms.push_back(std::move(platform));
+    computePlatformLayers();
     return this;
   }
 
   void MetroidvaniaStage::renderPlatforms(NovelRT::NovelRenderingService* renderer) {
-    for (MetroidvaniaPlatform* platform : platforms)
+    for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms)
       platform->formRender(renderer);
   }
-  void MetroidvaniaStage::computePlatforms() {
-    for (const MetroidvaniaPlatform* platform : platforms) {
+
+  void MetroidvaniaStage::computePlatformLayers() {
+    for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms) {
       if (platform->getLayer() > _computedHighestLayer) _computedHighestLayer = platform->getLayer();
       if (platform->getLayer() < _computedLowestLayer) _computedLowestLayer = platform->getLayer();
-      if (platform->getLayerOrder() > _computedHighestLayerOrder) _computedHighestLayerOrder = platform->getLayerOrder();
-      if (platform->getLayerOrder() < _computedLowestLayerOrder) _computedLowestLayerOrder = platform->getLayerOrder();
     }
   }
 
   void MetroidvaniaStage::renderStage(NovelRT::NovelRenderingService* renderer) {
+    computePlatformLayers();
     renderPlatforms(renderer);
-    computePlatforms();
     raiseStageRendered();
-  }
-
-  MetroidvaniaStage::~MetroidvaniaStage() {
-    for (const MetroidvaniaPlatform* platform : platforms)
-      delete platform;
   }
 }

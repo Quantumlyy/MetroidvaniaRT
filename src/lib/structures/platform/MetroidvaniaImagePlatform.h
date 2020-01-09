@@ -4,6 +4,7 @@
 #include <string>
 
 #include "MetroidvaniaPlatform.h"
+#include "../MetroidvaniaIdentificationInformation.h"
 #include "../../../../dependencies/NovelRT/src/NovelRT.h"
 
 namespace MetroidvaniaRT {
@@ -15,9 +16,9 @@ namespace MetroidvaniaRT {
     const std::string& _filePath;
   public:
     NovelRT::NovelImageRect* renderObj;
-    NovelRT::NovelImageRect* formRender(NovelRT::NovelRenderingService* renderer);
+    NovelRT::NovelImageRect* formRender(NovelRT::NovelRenderingService* renderer) final;
 
-    MetroidvaniaImagePlatform(const std::string& filePath, NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
+    MetroidvaniaImagePlatform(MetroidvaniaIdentificationInformation& identificationInformation, const std::string& filePath, NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
   };
 }
 

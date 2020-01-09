@@ -10,8 +10,10 @@ namespace MetroidvaniaRT {
   public:
     std::vector<NovelRT::NovelRenderObject> elements;
 
+
+
     MetroidvaniaStageBackground();
-    ~MetroidvaniaStageBackground()
+    ~MetroidvaniaStageBackground();
   };
 }
 

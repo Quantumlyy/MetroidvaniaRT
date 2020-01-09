@@ -39,6 +39,7 @@ set(METROIDVANIART_HEADERS
   include/MetroidvaniaRT.h
   src/lib/MetroidvaniaRunner.h
   src/lib/MetroidvaniaStageService.h
+  src/lib/structures/MetroidvaniaIdentificationInformation.h
   src/lib/structures/platform/MetroidvaniaPlatform.h
   src/lib/structures/platform/MetroidvaniaImagePlatform.h
   src/lib/structures/platform/MetroidvaniaFillPlatform.h
