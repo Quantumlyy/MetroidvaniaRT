@@ -6,7 +6,7 @@
 #include <vector>
 #include <stdexcept>
 
-#include "../dependencies/NovelRT/src/NovelRT.h"
+#include "../dependencies/NovelRT/include/NovelRT.h"
 
 namespace MetroidvaniaRT {
   typedef class IdentificationInformation IdentificationInformation;

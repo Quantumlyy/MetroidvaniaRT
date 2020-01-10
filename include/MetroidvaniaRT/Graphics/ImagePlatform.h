@@ -14,10 +14,10 @@ namespace MetroidvaniaRT::Graphics {
     const std::string& _filePath;
 
   public:
-    NovelRT::NovelImageRect* renderObj;
-    NovelRT::NovelImageRect* formRender(NovelRT::NovelRenderingService* renderer) final;
+    NovelRT::Graphics::ImageRect* renderObj;
+    NovelRT::Graphics::ImageRect* formRender(NovelRT::Graphics::RenderingService* renderer) final;
 
-    ImagePlatform(IdentificationInformation& identificationInformation, const std::string& filePath, NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
+    ImagePlatform(IdentificationInformation& identificationInformation, const std::string& filePath, NovelRT::Transform& args, NovelRT::Graphics::RGBAConfig& colourTint);
   };
 }
 

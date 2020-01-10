@@ -14,14 +14,14 @@ namespace MetroidvaniaRT::Graphics {
     NOVELRT_PARAMETERLESS_EVENT(PlatformRendered)
 
   protected:
-    NovelRT::NovelCommonArgs& _args;
-    NovelRT::RGBAConfig& _colourTint;
+    NovelRT::Transform& _args;
+    NovelRT::Graphics::RGBAConfig& _colourTint;
     // The current identification information of this Platform.
     IdentificationInformation& _II;
 
   public:
     // The object that was rendered when formRender was called.
-    NovelRT::NovelRenderObject* renderOb;
+    NovelRT::Graphics::RenderObject* renderOb;
 
     // Gets the current II of this Platform.
     virtual IdentificationInformation& getII() const;
@@ -35,9 +35,9 @@ namespace MetroidvaniaRT::Graphics {
      * @param renderer The RenderingService on which the Platform should be rendered.
      * @returns The rendered object.
      */
-    virtual NovelRT::NovelRenderObject* formRender(NovelRT::NovelRenderingService* renderer) = 0;
+    virtual NovelRT::Graphics::RenderObject* formRender(NovelRT::Graphics::RenderingService* renderer) = 0;
 
-    Platform(IdentificationInformation& identificationInformation, NovelRT::NovelCommonArgs& args, NovelRT::RGBAConfig& colourTint);
+    Platform(IdentificationInformation& identificationInformation, NovelRT::Transform& args, NovelRT::Graphics::RGBAConfig& colourTint);
   };
 }
 

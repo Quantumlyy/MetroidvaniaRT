@@ -2,8 +2,8 @@
 
 namespace MetroidvaniaRT::Graphics {
   Platform::Platform(IdentificationInformation& identificationInformation,
-    NovelRT::NovelCommonArgs& args,
-    NovelRT::RGBAConfig& colourTint) :
+    NovelRT::Transform& args,
+    NovelRT::Graphics::RGBAConfig& colourTint) :
       _args(args),
       _colourTint(colourTint),
       _II(identificationInformation) { }
