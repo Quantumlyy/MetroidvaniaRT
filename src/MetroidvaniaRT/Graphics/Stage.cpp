@@ -31,12 +31,18 @@ namespace MetroidvaniaRT::Graphics {
     checkIIConfliction(platform.get());
     platforms.push_back(std::move(platform));
     computePlatformLayers();
+    std::sort(platforms.begin(), platforms.end(), [](Platform x, Platform y) { return (x.getLayer() < y.getLayer()); });
     return this;
   }
 
-  void Stage::renderPlatforms(NovelRT::NovelRenderingService* renderer) {
+  void Stage::createPlatforms(NovelRT::Graphics::RenderingService* renderer, bool force) {
     for (const std::unique_ptr<Platform>& platform : platforms)
-      platform->formRender(renderer);
+      if (force || !platform->getCreated()) platform->create(renderer);
+  }
+
+  void Stage::renderPlatforms() {
+    for (const std::unique_ptr<Platform>& platform : platforms)
+      platform->render();
   }
 
   void Stage::computePlatformLayers() {
@@ -47,9 +53,8 @@ namespace MetroidvaniaRT::Graphics {
     }
   }
 
-  void Stage::renderStage(NovelRT::NovelRenderingService* renderer) {
-    computePlatformLayers();
-    renderPlatforms(renderer);
+  void Stage::render() {
+    renderPlatforms();
     raiseStageRendered();
   }
 }

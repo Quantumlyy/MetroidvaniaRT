@@ -8,10 +8,15 @@ namespace MetroidvaniaRT::Graphics {
       _transform(transform),
       _layer(layer),
       _colourTint(colourTint),
-      _II(identificationInformation) { }
+      _II(identificationInformation),
+      _created(false) { }
 
   IdentificationInformation& Platform::getII() const {
     return _II;
+  }
+
+  bool Platform::getCreated() const {
+    return _created;
   }
 
   int Platform::getLayer() const {

@@ -32,14 +32,38 @@ namespace MetroidvaniaRT::Graphics {
     return this;
   }
 
+  Stage* StageService::createStage(int stageId) {
+    auto stage = getStage(stageId);
+    stage->createPlatforms(_runner->getRenderer());
+    return stage;
+  }
+  Stage* StageService::createStage(const std::string& stageName) {
+    auto stage = getStage(stageName);
+    stage->createPlatforms(_runner->getRenderer());
+    return stage;
+  }
+
   Stage* StageService::renderStage(int stageId) {
     auto stage = getStage(stageId);
-    stage->renderStage(_runner->getRenderer());
+    stage->render();
     return stage;
   }
   Stage* StageService::renderStage(const std::string& stageName) {
     auto stage = getStage(stageName);
-    stage->renderStage(_runner->getRenderer());
+    stage->render();
     return stage;
+  }
+
+  void StageService::initiateRenderLoopStage(int stageId) {
+    auto stage = getStage(stageId);
+    _runner->subscribeToSceneConstructionRequested([stage] {
+      stage->render();
+      });
+  }
+  void StageService::initiateRenderLoopStage(const std::string& stageName) {
+    auto stage = getStage(stageName);
+    _runner->subscribeToSceneConstructionRequested([stage] {
+      stage->render();
+    });
   }
 }

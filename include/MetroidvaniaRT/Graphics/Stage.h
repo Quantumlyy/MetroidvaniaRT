@@ -29,9 +29,10 @@ namespace MetroidvaniaRT::Graphics {
     virtual void checkIIConfliction(Platform* insertedPlatform);
 
     Stage* addPlatform(std::unique_ptr<Platform> platform);
-    void renderPlatforms(NovelRT::Graphics::RenderingService* renderer);
+    void createPlatforms(NovelRT::Graphics::RenderingService* renderer, bool force = false);
+    void renderPlatforms();
     void computePlatformLayers();
-    void renderStage(NovelRT::Graphics::RenderingService* renderer);
+    void render();
 
     Stage(IdentificationInformation& identificationInformation);
   };

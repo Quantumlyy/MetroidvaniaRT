@@ -20,6 +20,7 @@ namespace MetroidvaniaRT::Graphics {
     int _layer;
     // The current identification information of this Platform.
     IdentificationInformation& _II;
+    bool _created;
 
   public:
     // The object that was rendered when create was called.
@@ -28,15 +29,11 @@ namespace MetroidvaniaRT::Graphics {
     // Gets the current II of this Platform.
     virtual IdentificationInformation& getII() const;
 
+    virtual bool getCreated() const;
+
     virtual int getLayer() const;
     virtual void setLayer(int value);
 
-    /**
-     * The abstract method for rendering this Platform.
-     *
-     * @param renderer The RenderingService on which the Platform should be rendered.
-     * @returns The rendered object.
-     */
     virtual NovelRT::Graphics::RenderObject* create(NovelRT::Graphics::RenderingService* renderer) = 0;
     virtual void render();
 

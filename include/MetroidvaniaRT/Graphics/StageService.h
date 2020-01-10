@@ -21,12 +21,21 @@ namespace MetroidvaniaRT::Graphics {
     std::map<IdentificationInformation, std::unique_ptr<Stage>, findingComparator> stages;
 
     StageService* addStage(std::unique_ptr<Stage> stage);
+
     Stage* getStage(int _id);
     Stage* getStage(const std::string& _name);
+
     StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform);
     StageService* addStagePlatform(int stageId, std::unique_ptr<Platform> platform);
+
+    Stage* createStage(int stageId);
+    Stage* createStage(const std::string& stageName);
+
     Stage* renderStage(int stageId);
     Stage* renderStage(const std::string& stageName);
+
+    void initiateRenderLoopStage(int stageId);
+    void initiateRenderLoopStage(const std::string& stageName);
 
     StageService(MetroidvaniaRunner* const runner);
   };
