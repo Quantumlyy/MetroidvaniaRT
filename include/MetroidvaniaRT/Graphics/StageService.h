@@ -8,11 +8,14 @@
 namespace MetroidvaniaRT::Graphics {
   struct findingComparator {
     bool operator()(const IdentificationInformation& x, const IdentificationInformation& y) const {
-      return (x.id > y.id);
+      return (x.id > y.id) || (x.name > y.name);
     }
   };
 
   class StageService {
+
+  protected:
+    MetroidvaniaRunner* const _runner;
 
   public:
     std::map<IdentificationInformation, std::unique_ptr<Stage>, findingComparator> stages;
@@ -22,10 +25,10 @@ namespace MetroidvaniaRT::Graphics {
     Stage* getStage(const std::string& _name);
     StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform);
     StageService* addStagePlatform(int stageId, std::unique_ptr<Platform> platform);
-    Stage* renderStage(NovelRT::Graphics::RenderingService* renderer, int stageId);
-    Stage* renderStage(NovelRT::Graphics::RenderingService* renderer, const std::string& stageName);
+    Stage* renderStage(int stageId);
+    Stage* renderStage(const std::string& stageName);
 
-    StageService();
+    StageService(MetroidvaniaRunner* const runner);
   };
 }
 

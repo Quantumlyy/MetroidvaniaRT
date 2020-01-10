@@ -2,12 +2,13 @@
 
 namespace MetroidvaniaRT::Graphics {
   FillPlatform::FillPlatform(IdentificationInformation& identificationInformation,
-    NovelRT::RGBAConfig& colourFill,
-    NovelRT::NovelCommonArgs& args) : Platform(identificationInformation, args, colourFill) { }
+    NovelRT::Transform& transform,
+    int layer,
+    NovelRT::Graphics::RGBAConfig& colourConfig) : Platform(identificationInformation, transform, layer, colourConfig) { }
 
-  NovelRT::NovelBasicFillRect* FillPlatform::formRender(NovelRT::NovelRenderingService* renderer) {
-    renderObj = renderer->getBasicFillRect(_colourTint, _args);
-    raisePlatformRendered();
+  NovelRT::Graphics::BasicFillRect* FillPlatform::create(NovelRT::Graphics::RenderingService* renderer) {
+    renderObj = renderer->createBasicFillRect(_transform, _layer, _colourTint).get();
+    raisePlatformCreated();
     return renderObj;
   }
 }

@@ -2,7 +2,8 @@
 
 namespace MetroidvaniaRT::Graphics {
 
-  StageService::StageService() { }
+  StageService::StageService(MetroidvaniaRunner* const runner) :
+    _runner(runner) { }
 
   StageService* StageService::addStage(std::unique_ptr<Stage> stage) {
     stages.insert(std::pair(stage.get()->getII(), std::move(stage)));
@@ -31,14 +32,14 @@ namespace MetroidvaniaRT::Graphics {
     return this;
   }
 
-  Stage* StageService::renderStage(NovelRT::NovelRenderingService* renderer, int stageId) {
+  Stage* StageService::renderStage(int stageId) {
     auto stage = getStage(stageId);
-    stage->renderStage(renderer);
+    stage->renderStage(_runner->getRenderer());
     return stage;
   }
-  Stage* StageService::renderStage(NovelRT::NovelRenderingService* renderer, const std::string& stageName) {
+  Stage* StageService::renderStage(const std::string& stageName) {
     auto stage = getStage(stageName);
-    stage->renderStage(renderer);
+    stage->renderStage(_runner->getRenderer());
     return stage;
   }
 }

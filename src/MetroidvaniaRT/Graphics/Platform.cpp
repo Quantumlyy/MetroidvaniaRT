@@ -2,9 +2,11 @@
 
 namespace MetroidvaniaRT::Graphics {
   Platform::Platform(IdentificationInformation& identificationInformation,
-    NovelRT::Transform& args,
+    NovelRT::Transform& transform,
+    int layer,
     NovelRT::Graphics::RGBAConfig& colourTint) :
-      _args(args),
+      _transform(transform),
+      _layer(layer),
       _colourTint(colourTint),
       _II(identificationInformation) { }
 
@@ -13,10 +15,15 @@ namespace MetroidvaniaRT::Graphics {
   }
 
   int Platform::getLayer() const {
-    return _args.layer;
+    return renderObj->getLayer();
   }
   void Platform::setLayer(int value) {
-    _args.layer = value;
+    return renderObj->setLayer(value);
+  }
+
+  void Platform::render() {
+    renderObj->executeObjectBehaviour();
+    raisePlatformRendered();
   }
 
 }

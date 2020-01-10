@@ -12,9 +12,10 @@ namespace MetroidvaniaRT::Graphics {
   class FillPlatform : public Platform {
   public:
     NovelRT::Graphics::BasicFillRect* renderObj;
-    NovelRT::Graphics::BasicFillRect* formRender(NovelRT::Graphics::RenderingService* renderer) final;
 
-    FillPlatform(IdentificationInformation& identificationInformation, NovelRT::Graphics::RGBAConfig& colourFill, NovelRT::Transform& args);
+    NovelRT::Graphics::BasicFillRect* create(NovelRT::Graphics::RenderingService* renderer) override;
+
+    FillPlatform(IdentificationInformation& identificationInformation, NovelRT::Transform& transform, int layer, NovelRT::Graphics::RGBAConfig& colourConfig);
   };
 }
 
