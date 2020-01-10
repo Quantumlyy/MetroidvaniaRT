@@ -20,8 +20,8 @@ namespace MetroidvaniaRT::Graphics {
     StageService* addStage(std::unique_ptr<Stage> stage);
     Stage* getStage(int _id);
     Stage* getStage(const std::string& _name);
-    StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<MetroidvaniaPlatform> platform);
-    StageService* addStagePlatform(int stageId, std::unique_ptr<MetroidvaniaPlatform> platform);
+    StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform);
+    StageService* addStagePlatform(int stageId, std::unique_ptr<Platform> platform);
     Stage* renderStage(NovelRT::NovelRenderingService* renderer, int stageId);
     Stage* renderStage(NovelRT::NovelRenderingService* renderer, const std::string& stageName);
 

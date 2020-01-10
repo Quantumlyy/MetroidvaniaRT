@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.13)
 
 project(MetroidvaniaRT VERSION 0.0.1)
-include(GNUInstallDirs)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE "x64")
 
@@ -10,85 +10,9 @@ set(CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE "x64")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-# Registering dependencies
 add_subdirectory(dependencies/NovelRT)
 
-set(METROIDVANIART_SHADERS
-  src/resources/shaders/BasicFragmentShader.glsl
-  src/resources/shaders/BasicVertexShader.glsl
-  src/resources/shaders/FontFragmentShader.glsl
-  src/resources/shaders/FontVertexShader.glsl
-  src/resources/shaders/TexturedFragmentShader.glsl
-  src/resources/shaders/TexturedVertexShader.glsl
-)
+include_directories(include)
 
-set(METROIDVANIART_FONTS
-  src/resources/fonts/Raleway-Regular.ttf
-)
-
-set(METROIDVANIART_RESOURCES
-  ${METROIDVANIART_SHADERS}
-  ${METROIDVANIART_FONTS}
-)
-
-file(COPY ${METROIDVANIART_RESOURCES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
-find_package(Doxygen QUIET)
-
-set(METROIDVANIART_HEADERS
-  include/MetroidvaniaRT.h
-  include/MetroidvaniaRT/IdentificationInformation.h
-  include/MetroidvaniaRT/MetroidvaniaRunner.h
-  include/MetroidvaniaRT/Graphics/StageService.h
-  include/MetroidvaniaRT/Graphics/Stage.h
-  include/MetroidvaniaRT/Graphics/Platform.h
-  include/MetroidvaniaRT/Graphics/FillPlatform.h
-  include/MetroidvaniaRT/Graphics/ImagePlatform.h
-)
-
-set(METROIDVANIART_SOURCES
-	src/lib/MetroidvaniaRunner.cpp
-  src/lib/MetroidvaniaStageService.cpp
-  src/lib/structures/platform/MetroidvaniaPlatform.cpp
-  src/lib/structures/platform/MetroidvaniaImagePlatform.cpp
-  src/lib/structures/platform/MetroidvaniaFillPlatform.cpp
-  src/lib/structures/stage/MetroidvaniaStage.cpp
-)
-
-set(METROIDVANIART_LINK_LIBRARIES
-  NovelRTLib
-)
-
-set(METROIDVANIART_EXECUTABLE_HEADERS
-  ${METROIDVANIART_HEADERS}
-)
-
-set(METROIDVANIART_EXECUTABLE_SOURCES
-)
-
-set(METROIDVANIART_EXECUTABLE_LINK_LIBRARIES
-  ${METROIDVANIART_LINK_LIBRARIES}
-  MetroidvaniaRTLib
-)
-
-add_executable(MetroidvaniaRT ${METROIDVANIART_EXECUTABLE_HEADERS} ${METROIDVANIART_EXECUTABLE_SOURCES})
-target_link_libraries(MetroidvaniaRT ${METROIDVANIART_EXECUTABLE_LINK_LIBRARIES})
-
-if (WIN32)
-  set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-endif()
-
-set(METROIDVANIART_LIBRARY_HEADERS
-  ${METROIDVANIART_HEADERS}
-)
-
-set(METROIDVANIART_LIBRARY_SOURCES
-  ${METROIDVANIART_SOURCES}
-)
-
-set(METROIDVANIART_LIBRARY_LINK_LIBRARIES
-  ${METROIDVANIART_LINK_LIBRARIES}
-)
-
-add_library(MetroidvaniaRTLib SHARED ${METROIDVANIART_LIBRARY_HEADERS} ${METROIDVANIART_LIBRARY_SOURCES})
-target_link_libraries(MetroidvaniaRTLib ${METROIDVANIART_LIBRARY_LINK_LIBRARIES})
+add_subdirectory(src)
+add_subdirectory(samples)

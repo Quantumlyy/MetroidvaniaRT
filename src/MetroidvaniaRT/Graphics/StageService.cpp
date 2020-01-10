@@ -1,42 +1,42 @@
-#include "MetroidvaniaStageService.h"
+#include <MetroidvaniaRT.h>
 
-namespace MetroidvaniaRT {
+namespace MetroidvaniaRT::Graphics {
 
-  MetroidvaniaStageService::MetroidvaniaStageService() { }
+  StageService::StageService() { }
 
-  MetroidvaniaStageService* MetroidvaniaStageService::addStage(std::unique_ptr<MetroidvaniaStage> stage) {
+  StageService* StageService::addStage(std::unique_ptr<Stage> stage) {
     stages.insert(std::pair(stage.get()->getII(), std::move(stage)));
     return this;
   }
 
-  MetroidvaniaStage* MetroidvaniaStageService::getStage(int _id) {
-    auto opts = MetroidvaniaIdentificationInformation();
+  Stage* StageService::getStage(int _id) {
+    auto opts = IdentificationInformation();
     opts.id = _id;
     return stages.at(opts).get();
   }
-  MetroidvaniaStage* MetroidvaniaStageService::getStage(const std::string& _name) {
-    auto opts = MetroidvaniaIdentificationInformation();
+  Stage* StageService::getStage(const std::string& _name) {
+    auto opts = IdentificationInformation();
     opts.name = _name;
     return stages.at(opts).get();
   }
 
-  MetroidvaniaStageService* MetroidvaniaStageService::addStagePlatform(int stageId, std::unique_ptr<MetroidvaniaPlatform> platform) {
+  StageService* StageService::addStagePlatform(int stageId, std::unique_ptr<Platform> platform) {
     auto stage = getStage(stageId);
     stage->addPlatform(std::move(platform));
     return this;
   }
-  MetroidvaniaStageService* MetroidvaniaStageService::addStagePlatform(const std::string& stageName, std::unique_ptr<MetroidvaniaPlatform> platform) {
+  StageService* StageService::addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform) {
     auto stage = getStage(stageName);
     stage->addPlatform(std::move(platform));
     return this;
   }
 
-  MetroidvaniaStage* MetroidvaniaStageService::renderStage(NovelRT::NovelRenderingService* renderer, int stageId) {
+  Stage* StageService::renderStage(NovelRT::NovelRenderingService* renderer, int stageId) {
     auto stage = getStage(stageId);
     stage->renderStage(renderer);
     return stage;
   }
-  MetroidvaniaStage* MetroidvaniaStageService::renderStage(NovelRT::NovelRenderingService* renderer, const std::string& stageName) {
+  Stage* StageService::renderStage(NovelRT::NovelRenderingService* renderer, const std::string& stageName) {
     auto stage = getStage(stageName);
     stage->renderStage(renderer);
     return stage;

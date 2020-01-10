@@ -1,21 +1,21 @@
-#include "MetroidvaniaPlatform.h"
+#include <MetroidvaniaRT.h>
 
-namespace MetroidvaniaRT {
-  MetroidvaniaPlatform::MetroidvaniaPlatform(MetroidvaniaIdentificationInformation& identificationInformation,
+namespace MetroidvaniaRT::Graphics {
+  Platform::Platform(IdentificationInformation& identificationInformation,
     NovelRT::NovelCommonArgs& args,
     NovelRT::RGBAConfig& colourTint) :
       _args(args),
       _colourTint(colourTint),
       _II(identificationInformation) { }
 
-  MetroidvaniaIdentificationInformation& MetroidvaniaPlatform::getII() const {
+  IdentificationInformation& Platform::getII() const {
     return _II;
   }
 
-  int MetroidvaniaPlatform::getLayer() const {
+  int Platform::getLayer() const {
     return _args.layer;
   }
-  void MetroidvaniaPlatform::setLayer(int value) {
+  void Platform::setLayer(int value) {
     _args.layer = value;
   }
 

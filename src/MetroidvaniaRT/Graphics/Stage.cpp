@@ -1,25 +1,25 @@
-#include "MetroidvaniaStage.h"
+#include <MetroidvaniaRT.h>
 
-namespace MetroidvaniaRT {
-  MetroidvaniaStage::MetroidvaniaStage(MetroidvaniaIdentificationInformation& identificationInformation) :
+namespace MetroidvaniaRT::Graphics {
+  Stage::Stage(IdentificationInformation& identificationInformation) :
     _II(identificationInformation),
     _computedHighestLayer(0),
     _computedLowestLayer(0) { }
 
-  MetroidvaniaIdentificationInformation& MetroidvaniaStage::getII() const {
+  IdentificationInformation& Stage::getII() const {
     return _II;
   }
 
-  int MetroidvaniaStage::getComputedHighestLayer() const {
+  int Stage::getComputedHighestLayer() const {
     return _computedHighestLayer;
   }
-  int MetroidvaniaStage::getComputedLowestLayer() const {
+  int Stage::getComputedLowestLayer() const {
     return _computedLowestLayer;
   }
 
-  void MetroidvaniaStage::checkIIConfliction(MetroidvaniaPlatform* insertedPlatform) {
+  void Stage::checkIIConfliction(Platform* insertedPlatform) {
     auto insertedII = insertedPlatform->getII();
-    for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms) {
+    for (const std::unique_ptr<Platform>& platform : platforms) {
       auto currentII = platform.get()->getII();
       
       if (currentII.id == insertedII.id) throw std::logic_error("Platform has a conflicting ID");
@@ -27,27 +27,27 @@ namespace MetroidvaniaRT {
     }
   }
 
-  MetroidvaniaStage* MetroidvaniaStage::addPlatform(std::unique_ptr<MetroidvaniaPlatform> platform) {
+  Stage* Stage::addPlatform(std::unique_ptr<Platform> platform) {
     checkIIConfliction(platform.get());
     platforms.push_back(std::move(platform));
     computePlatformLayers();
     return this;
   }
 
-  void MetroidvaniaStage::renderPlatforms(NovelRT::NovelRenderingService* renderer) {
-    for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms)
+  void Stage::renderPlatforms(NovelRT::NovelRenderingService* renderer) {
+    for (const std::unique_ptr<Platform>& platform : platforms)
       platform->formRender(renderer);
   }
 
-  void MetroidvaniaStage::computePlatformLayers() {
-    for (const std::unique_ptr<MetroidvaniaPlatform>& platform : platforms) {
+  void Stage::computePlatformLayers() {
+    for (const std::unique_ptr<Platform>& platform : platforms) {
       auto layer = platform.get()->getLayer();
       if (layer  > getComputedHighestLayer()) _computedHighestLayer = layer;
       if (layer < getComputedLowestLayer()) _computedLowestLayer = layer;
     }
   }
 
-  void MetroidvaniaStage::renderStage(NovelRT::NovelRenderingService* renderer) {
+  void Stage::renderStage(NovelRT::NovelRenderingService* renderer) {
     computePlatformLayers();
     renderPlatforms(renderer);
     raiseStageRendered();

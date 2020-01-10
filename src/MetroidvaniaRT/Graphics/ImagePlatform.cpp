@@ -1,12 +1,12 @@
-#include "MetroidvaniaImagePlatform.h"
+#include <MetroidvaniaRT.h>
 
-namespace MetroidvaniaRT {
-  MetroidvaniaImagePlatform::MetroidvaniaImagePlatform(MetroidvaniaIdentificationInformation& identificationInformation,
+namespace MetroidvaniaRT::Graphics {
+  ImagePlatform::ImagePlatform(IdentificationInformation& identificationInformation,
     const std::string& filePath,
     NovelRT::NovelCommonArgs& args,
-    NovelRT::RGBAConfig& colourTint) : MetroidvaniaPlatform(identificationInformation, args, colourTint), _filePath(filePath) { }
+    NovelRT::RGBAConfig& colourTint) : Platform(identificationInformation, args, colourTint), _filePath(filePath) { }
 
-  NovelRT::NovelImageRect* MetroidvaniaImagePlatform::formRender(NovelRT::NovelRenderingService* renderer) {
+  NovelRT::NovelImageRect* ImagePlatform::formRender(NovelRT::NovelRenderingService* renderer) {
     renderObj = renderer->getImageRect(_filePath, _args, _colourTint);
     raisePlatformRendered();
     return renderObj;

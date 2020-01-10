@@ -12,12 +12,12 @@ namespace MetroidvaniaRT {
   class MetroidvaniaRunner : public NovelRT::NovelRunner {
 
   private:
-    std::unique_ptr<StageService> _stageService;
+    std::unique_ptr<Graphics::StageService> _stageService;
 
   public:
     explicit MetroidvaniaRunner(int displayNumber, const std::string& windowTitle = "MetroidvaniaRTTest", uint32_t targetFrameRate = 0);
 
-    StageService* getStageService() const;
+    Graphics::StageService* getStageService() const;
   };
 }
 
