@@ -26,6 +26,13 @@ namespace MetroidvaniaRT::Graphics {
       if ((currentII.name == insertedII.name) && (insertedII.name != "")) throw std::logic_error("Platform has a conflicting name");
     }
   }
+  void Stage::computePlatformLayers() {
+    for (const std::unique_ptr<Platform>& platform : platforms) {
+      auto layer = platform.get()->getLayer();
+      if (layer > getComputedHighestLayer()) _computedHighestLayer = layer;
+      if (layer < getComputedLowestLayer()) _computedLowestLayer = layer;
+    }
+  }
 
   Stage* Stage::addPlatform(std::unique_ptr<Platform> platform) {
     checkIIConfliction(platform.get());
@@ -39,20 +46,15 @@ namespace MetroidvaniaRT::Graphics {
     for (const std::unique_ptr<Platform>& platform : platforms)
       if (force || !platform->getCreated()) platform->create(renderer);
   }
-
   void Stage::renderPlatforms() {
     for (const std::unique_ptr<Platform>& platform : platforms)
       platform->render();
   }
 
-  void Stage::computePlatformLayers() {
-    for (const std::unique_ptr<Platform>& platform : platforms) {
-      auto layer = platform.get()->getLayer();
-      if (layer  > getComputedHighestLayer()) _computedHighestLayer = layer;
-      if (layer < getComputedLowestLayer()) _computedLowestLayer = layer;
-    }
+  void Stage::create(NovelRT::Graphics::RenderingService* renderer, bool force) {
+    createPlatforms(renderer, force);
+    raiseStageCreated();
   }
-
   void Stage::render() {
     renderPlatforms();
     raiseStageRendered();

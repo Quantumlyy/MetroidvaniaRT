@@ -15,9 +15,10 @@ namespace MetroidvaniaRT::Graphics {
 
   public:
     NovelRT::Graphics::ImageRect* renderObj;
-    NovelRT::Graphics::ImageRect* formRender(NovelRT::Graphics::RenderingService* renderer) final;
 
-    ImagePlatform(IdentificationInformation& identificationInformation, const std::string& filePath, NovelRT::Transform& args, NovelRT::Graphics::RGBAConfig& colourTint);
+    NovelRT::Graphics::ImageRect* create(NovelRT::Graphics::RenderingService* renderer) override;
+
+    ImagePlatform(IdentificationInformation& identificationInformation, int layer, const std::string& filePath, NovelRT::Transform& transform, NovelRT::Graphics::RGBAConfig& colourTint);
   };
 }
 

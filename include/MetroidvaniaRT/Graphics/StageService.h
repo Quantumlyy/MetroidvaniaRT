@@ -28,8 +28,8 @@ namespace MetroidvaniaRT::Graphics {
     StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform);
     StageService* addStagePlatform(int stageId, std::unique_ptr<Platform> platform);
 
-    Stage* createStage(int stageId);
-    Stage* createStage(const std::string& stageName);
+    Stage* createStage(int stageId, bool force = false);
+    Stage* createStage(const std::string& stageName, bool force = false);
 
     Stage* renderStage(int stageId);
     Stage* renderStage(const std::string& stageName);

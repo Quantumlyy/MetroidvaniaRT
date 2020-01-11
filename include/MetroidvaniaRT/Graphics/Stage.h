@@ -11,6 +11,7 @@ namespace MetroidvaniaRT::Graphics {
    */
   class Stage {
 
+    NOVELRT_PARAMETERLESS_EVENT(StageCreated)
     NOVELRT_PARAMETERLESS_EVENT(StageRendered)
 
   protected:
@@ -27,11 +28,14 @@ namespace MetroidvaniaRT::Graphics {
     virtual int getComputedLowestLayer() const;
 
     virtual void checkIIConfliction(Platform* insertedPlatform);
+    void computePlatformLayers();
 
     Stage* addPlatform(std::unique_ptr<Platform> platform);
+
     void createPlatforms(NovelRT::Graphics::RenderingService* renderer, bool force = false);
     void renderPlatforms();
-    void computePlatformLayers();
+
+    void create(NovelRT::Graphics::RenderingService* renderer, bool force = false);
     void render();
 
     Stage(IdentificationInformation& identificationInformation);
