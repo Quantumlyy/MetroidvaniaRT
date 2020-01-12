@@ -8,7 +8,7 @@
 namespace MetroidvaniaRT::Graphics {
   struct findingComparator {
     bool operator()(const IdentificationInformation& x, const IdentificationInformation& y) const {
-      return (x.id > y.id) || (x.name > y.name);
+      return (x.id > y.id);
     }
   };
 

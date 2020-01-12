@@ -38,7 +38,7 @@ namespace MetroidvaniaRT::Graphics {
     checkIIConfliction(platform.get());
     platforms.push_back(std::move(platform));
     computePlatformLayers();
-    std::sort(platforms.begin(), platforms.end(), [](Platform x, Platform y) { return (x.getLayer() < y.getLayer()); });
+    //std::sort(platforms.begin(), platforms.end(), [](std::unique_ptr<Platform> x, std::unique_ptr<Platform> y) { return (x.get()->getLayer() < y.get()->getLayer()); });
     return this;
   }
 

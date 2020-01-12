@@ -34,12 +34,12 @@ namespace MetroidvaniaRT::Graphics {
 
   Stage* StageService::createStage(int stageId, bool force) {
     auto stage = getStage(stageId);
-    stage->createPlatforms(_runner->getRenderer(), force);
+    stage->create(_runner->getRenderer(), force);
     return stage;
   }
   Stage* StageService::createStage(const std::string& stageName, bool force) {
     auto stage = getStage(stageName);
-    stage->createPlatforms(_runner->getRenderer(), force);
+    stage->create(_runner->getRenderer(), force);
     return stage;
   }
 
