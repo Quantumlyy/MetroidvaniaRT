@@ -20,10 +20,11 @@ namespace MetroidvaniaRT::Graphics {
   }
 
   int Platform::getLayer() const {
-    return renderObj->getLayer();
+    return _layer;
   }
   void Platform::setLayer(int value) {
-    return renderObj->setLayer(value);
+    renderObj->setLayer(value);
+    _layer = value;
   }
 
   void Platform::render() {
