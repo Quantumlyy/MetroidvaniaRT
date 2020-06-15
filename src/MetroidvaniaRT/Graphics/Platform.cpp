@@ -5,6 +5,8 @@ namespace MetroidvaniaRT::Graphics {
     NovelRT::Transform& transform,
     int layer,
     NovelRT::Graphics::RGBAConfig& colourTint) :
+      PlatformCreated(NovelRT::Utilities::Event<>()),
+      PlatformRendered(NovelRT::Utilities::Event<>()),
       _transform(transform),
       _layer(layer),
       _colourTint(colourTint),
@@ -29,7 +31,7 @@ namespace MetroidvaniaRT::Graphics {
 
   void Platform::render() {
     renderObj->executeObjectBehaviour();
-    raisePlatformRendered();
+    PlatformRendered();
   }
 
 }

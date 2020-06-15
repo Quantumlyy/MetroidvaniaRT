@@ -11,9 +11,6 @@ namespace MetroidvaniaRT::Graphics {
    */
   class Platform {
 
-    NOVELRT_PARAMETERLESS_EVENT(PlatformCreated)
-    NOVELRT_PARAMETERLESS_EVENT(PlatformRendered)
-
   protected:
     NovelRT::Transform& _transform;
     NovelRT::Graphics::RGBAConfig& _colourTint;
@@ -23,6 +20,9 @@ namespace MetroidvaniaRT::Graphics {
     bool _created;
 
   public:
+    NovelRT::Utilities::Event<> PlatformCreated;
+    NovelRT::Utilities::Event<> PlatformRendered;
+
     // The object that was rendered when create was called.
     NovelRT::Graphics::RenderObject* renderObj;
 

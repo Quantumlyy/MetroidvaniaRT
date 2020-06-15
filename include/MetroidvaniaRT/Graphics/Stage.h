@@ -9,10 +9,7 @@ namespace MetroidvaniaRT::Graphics {
   /**
    * The base class for a Stage.
    */
-  class Stage {
-
-    NOVELRT_PARAMETERLESS_EVENT(StageCreated)
-    NOVELRT_PARAMETERLESS_EVENT(StageRendered)
+  class Stage { 
 
   protected:
     IdentificationInformation& _II;
@@ -20,6 +17,9 @@ namespace MetroidvaniaRT::Graphics {
     int _computedLowestLayer;
 
   public:
+    NovelRT::Utilities::Event<> StageCreated;
+    NovelRT::Utilities::Event<> StageRendered;
+
     std::vector<std::unique_ptr<Platform>> platforms;
 
     virtual IdentificationInformation& getII() const;

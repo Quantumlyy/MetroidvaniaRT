@@ -2,6 +2,8 @@
 
 namespace MetroidvaniaRT::Graphics {
   Stage::Stage(IdentificationInformation& identificationInformation) :
+    StageCreated(NovelRT::Utilities::Event<>()),
+    StageRendered(NovelRT::Utilities::Event<>()),
     _II(identificationInformation),
     _computedHighestLayer(0),
     _computedLowestLayer(0) { }
@@ -53,10 +55,10 @@ namespace MetroidvaniaRT::Graphics {
 
   void Stage::create(NovelRT::Graphics::RenderingService* renderer, bool force) {
     createPlatforms(renderer, force);
-    raiseStageCreated();
+    StageCreated();
   }
   void Stage::render() {
     renderPlatforms();
-    raiseStageRendered();
+    StageRendered();
   }
 }

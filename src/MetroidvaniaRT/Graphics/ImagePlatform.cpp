@@ -12,7 +12,7 @@ namespace MetroidvaniaRT::Graphics {
   NovelRT::Graphics::ImageRect* ImagePlatform::create(NovelRT::Graphics::RenderingService* renderer) {
     renderObj = renderer->createImageRect(_transform, _layer, _filePath, _colourTint).get();
     _created = true;
-    raisePlatformCreated();
+    PlatformCreated();
     return renderObj;
   }
 }

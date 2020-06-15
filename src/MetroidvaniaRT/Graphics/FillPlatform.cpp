@@ -9,7 +9,7 @@ namespace MetroidvaniaRT::Graphics {
   NovelRT::Graphics::BasicFillRect* FillPlatform::create(NovelRT::Graphics::RenderingService* renderer) {
     renderObj = renderer->createBasicFillRect(_transform, _layer, _colourTint).get();
     _created = true;
-    raisePlatformCreated();
+    PlatformCreated();
     return renderObj;
   }
 }
