@@ -9,6 +9,7 @@ namespace MetroidvaniaRT::Graphics {
   /**
    * The base class for creating a game platform in a stage.
    */
+  template<typename RenderedObj, typename std::enable_if<std::is_base_of<NovelRT::Graphics::RenderObject, RenderedObj>::value>::type * = nullptr>
   class Platform {
 
   protected:
@@ -20,24 +21,47 @@ namespace MetroidvaniaRT::Graphics {
     bool _created;
 
   public:
+    Platform(IdentificationInformation& identificationInformation,
+      NovelRT::Transform& transform,
+      int layer,
+      NovelRT::Graphics::RGBAConfig& colourTint) :
+      PlatformCreated(NovelRT::Utilities::Event<>()),
+      PlatformRendered(NovelRT::Utilities::Event<>()),
+      _transform(transform),
+      _layer(layer),
+      _colourTint(colourTint),
+      _II(identificationInformation),
+      _created(false) { }
+
     NovelRT::Utilities::Event<> PlatformCreated;
     NovelRT::Utilities::Event<> PlatformRendered;
 
     // The object that was rendered when create was called.
-    NovelRT::Graphics::RenderObject* renderObj;
+    std::shared_ptr<RenderedObj> renderObj;
 
     // Gets the current II of this Platform.
-    virtual IdentificationInformation& getII() const;
+    virtual IdentificationInformation& getII() const noexcept {
+      return _II;
+    }
 
-    virtual bool getCreated() const;
+    virtual bool getCreated() const noexcept {
+      return _created;
+    }
 
-    virtual int getLayer() const;
-    virtual void setLayer(int value);
+    virtual int getLayer() const {
+      _layer = renderObj->layer;
+      return _layer;
+    }
+    virtual void setLayer(int value) {
+      renderObj->layer = value;
+      _layer = renderObj->layer;
+    }
 
-    virtual NovelRT::Graphics::RenderObject* create(NovelRT::Graphics::RenderingService* renderer) = 0;
-    virtual void render();
-
-    Platform(IdentificationInformation& identificationInformation, NovelRT::Transform& transform, int layer, NovelRT::Graphics::RGBAConfig& colourTint);
+    virtual std::shared_ptr<RenderedObj> create(NovelRT::Graphics::RenderingService* renderer) = 0;
+    virtual void render() {
+      renderObj->executeObjectBehaviour();
+      PlatformRendered();
+    }
   };
 }
 

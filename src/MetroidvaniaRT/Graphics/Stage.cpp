@@ -19,15 +19,6 @@ namespace MetroidvaniaRT::Graphics {
     return _computedLowestLayer;
   }
 
-  void Stage::checkIIConfliction(Platform* insertedPlatform) {
-    auto insertedII = insertedPlatform->getII();
-    for (const std::unique_ptr<Platform>& platform : platforms) {
-      auto currentII = platform.get()->getII();
-      
-      if (currentII.id == insertedII.id) throw std::logic_error("Platform has a conflicting ID");
-      if ((currentII.name == insertedII.name) && (insertedII.name != "")) throw std::logic_error("Platform has a conflicting name");
-    }
-  }
   void Stage::computePlatformLayers() {
     for (const std::unique_ptr<Platform>& platform : platforms) {
       auto layer = platform.get()->getLayer();
@@ -36,20 +27,12 @@ namespace MetroidvaniaRT::Graphics {
     }
   }
 
-  Stage* Stage::addPlatform(std::unique_ptr<Platform> platform) {
-    checkIIConfliction(platform.get());
-    platforms.push_back(std::move(platform));
-    computePlatformLayers();
-    //std::sort(platforms.begin(), platforms.end(), [](std::unique_ptr<Platform> x, std::unique_ptr<Platform> y) { return (x.get()->getLayer() < y.get()->getLayer()); });
-    return this;
-  }
-
   void Stage::createPlatforms(NovelRT::Graphics::RenderingService* renderer, bool force) {
     for (const std::unique_ptr<Platform>& platform : platforms)
       if (force || !platform->getCreated()) platform->create(renderer);
   }
   void Stage::renderPlatforms() {
-    for (const std::unique_ptr<Platform>& platform : platforms)
+    for (const std::unique_ptr<Platform<NovelRT::Graphics::RenderObject>>& platform : platforms)
       platform->render();
   }
 

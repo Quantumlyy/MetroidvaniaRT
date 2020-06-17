@@ -25,8 +25,18 @@ namespace MetroidvaniaRT::Graphics {
     Stage* getStage(int _id);
     Stage* getStage(const std::string& _name);
 
-    StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform);
-    StageService* addStagePlatform(int stageId, std::unique_ptr<Platform> platform);
+    template<typename RenderedObj, typename std::enable_if<std::is_base_of<NovelRT::Graphics::RenderObject, RenderedObj>::value>::type * = nullptr>
+    StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<Platform<RenderedObj>> platform) {
+      auto stage = getStage(stageId);
+      stage->addPlatform(std::move(platform));
+      return this;
+    }
+    template<typename RenderedObj, typename std::enable_if<std::is_base_of<NovelRT::Graphics::RenderObject, RenderedObj>::value>::type * = nullptr>
+    StageService* addStagePlatform(int stageId, std::unique_ptr<Platform<RenderedObj>> platform) {
+      auto stage = getStage(stageName);
+      stage->addPlatform(std::move(platform));
+      return this;
+    }
 
     Stage* createStage(int stageId, bool force = false);
     Stage* createStage(const std::string& stageName, bool force = false);

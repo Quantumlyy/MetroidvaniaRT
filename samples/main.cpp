@@ -3,7 +3,7 @@
 int main(int argc, char* argv[]) {
   auto runner = new MetroidvaniaRT::MetroidvaniaRunner(0);
 
-  auto fillArgs = NovelRT::Transform(NovelRT::Maths::GeoVector<float>(1920 / 2, 1080 / 2), 0, NovelRT::Maths::GeoVector<float>(456, 618));
+  auto fillArgs = NovelRT::Transform(NovelRT::Maths::GeoVector2<float>(1920 / 2, 1080 / 2), 0, NovelRT::Maths::GeoVector2<float>(456, 618));
 
 
   auto IIStage = MetroidvaniaRT::IdentificationInformation();

@@ -18,15 +18,12 @@ namespace MetroidvaniaRT::Graphics {
 
   typedef class Stage Stage;
 
-  typedef class Platform Platform;
   typedef class FillPlatform FillPlatform;
-  typedef class ImagePlatform ImagePlatform;
 }
 
 #include "MetroidvaniaRT/IdentificationInformation.h"
 #include "MetroidvaniaRT/Graphics/Platform.h"
 #include "MetroidvaniaRT/Graphics/FillPlatform.h"
-#include "MetroidvaniaRT/Graphics/ImagePlatform.h"
 #include "MetroidvaniaRT/Graphics/Stage.h"
 #include "MetroidvaniaRT/Graphics/StageService.h"
 #include "MetroidvaniaRT/MetroidvaniaRunner.h"

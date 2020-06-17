@@ -21,17 +21,6 @@ namespace MetroidvaniaRT::Graphics {
     return stages.at(opts).get();
   }
 
-  StageService* StageService::addStagePlatform(int stageId, std::unique_ptr<Platform> platform) {
-    auto stage = getStage(stageId);
-    stage->addPlatform(std::move(platform));
-    return this;
-  }
-  StageService* StageService::addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform) {
-    auto stage = getStage(stageName);
-    stage->addPlatform(std::move(platform));
-    return this;
-  }
-
   Stage* StageService::createStage(int stageId, bool force) {
     auto stage = getStage(stageId);
     stage->create(_runner->getRenderer(), force);
