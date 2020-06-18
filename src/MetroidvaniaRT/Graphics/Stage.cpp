@@ -27,16 +27,16 @@ namespace MetroidvaniaRT::Graphics {
     }
   }
 
-  void Stage::createPlatforms(NovelRT::Graphics::RenderingService* renderer, bool force) {
+  void Stage::createPlatforms(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer, bool force) {
     for (const std::unique_ptr<Platform>& platform : platforms)
-      if (force || !platform->getCreated()) platform->create(renderer);
+      if (force || !platform.get()->getCreated()) platform.get()->create(renderer);
   }
   void Stage::renderPlatforms() {
     for (const std::unique_ptr<Platform<NovelRT::Graphics::RenderObject>>& platform : platforms)
       platform->render();
   }
 
-  void Stage::create(NovelRT::Graphics::RenderingService* renderer, bool force) {
+  void Stage::create(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer, bool force) {
     createPlatforms(renderer, force);
     StageCreated();
   }

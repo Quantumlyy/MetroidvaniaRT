@@ -48,16 +48,16 @@ namespace MetroidvaniaRT::Graphics {
       return _created;
     }
 
-    virtual int getLayer() const {
-      _layer = renderObj->layer;
+    virtual int getLayer() {
+      _layer = renderObj->layer();
       return _layer;
     }
     virtual void setLayer(int value) {
-      renderObj->layer = value;
-      _layer = renderObj->layer;
+      renderObj->layer() = value;
+      _layer = renderObj->layer();
     }
 
-    virtual std::shared_ptr<RenderedObj> create(NovelRT::Graphics::RenderingService* renderer) = 0;
+    virtual std::shared_ptr<RenderedObj> create(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer) = 0;
     virtual void render() {
       renderObj->executeObjectBehaviour();
       PlatformRendered();

@@ -27,13 +27,13 @@ namespace MetroidvaniaRT::Graphics {
 
     template<typename RenderedObj, typename std::enable_if<std::is_base_of<NovelRT::Graphics::RenderObject, RenderedObj>::value>::type * = nullptr>
     StageService* addStagePlatform(const std::string& stageName, std::unique_ptr<Platform<RenderedObj>> platform) {
-      auto stage = getStage(stageId);
+      auto stage = getStage(stageName);
       stage->addPlatform(std::move(platform));
       return this;
     }
     template<typename RenderedObj, typename std::enable_if<std::is_base_of<NovelRT::Graphics::RenderObject, RenderedObj>::value>::type * = nullptr>
     StageService* addStagePlatform(int stageId, std::unique_ptr<Platform<RenderedObj>> platform) {
-      auto stage = getStage(stageName);
+      auto stage = getStage(stageId);
       stage->addPlatform(std::move(platform));
       return this;
     }

@@ -13,7 +13,7 @@ namespace MetroidvaniaRT::Graphics {
   public:
     std::shared_ptr<NovelRT::Graphics::BasicFillRect> renderObj;
 
-    std::shared_ptr<NovelRT::Graphics::BasicFillRect> create(NovelRT::Graphics::RenderingService* renderer) override;
+    std::shared_ptr<NovelRT::Graphics::BasicFillRect> create(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer) override;
 
     FillPlatform(IdentificationInformation& identificationInformation, NovelRT::Transform& transform, int layer, NovelRT::Graphics::RGBAConfig& colourConfig);
   };

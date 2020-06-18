@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
   IIPlatform1.id = 1;
 
   runner->getStageService()->addStage(std::make_unique<MetroidvaniaRT::Graphics::Stage>(IIStage));
-  runner->getStageService()->addStagePlatform(1, std::make_unique<MetroidvaniaRT::Graphics::FillPlatform>(IIPlatform1, fillArgs, 1, NovelRT::Graphics::RGBAConfig(255, 0, 255, 255)));
+  runner->getStageService()->addStagePlatform<NovelRT::Graphics::BasicFillRect>(1, std::make_unique<MetroidvaniaRT::Graphics::FillPlatform>(IIPlatform1, fillArgs, 1, NovelRT::Graphics::RGBAConfig(255, 0, 255, 255)));
   runner->getStageService()->createStage(1);
   runner->getStageService()->initiateRenderLoopStage(1);
 

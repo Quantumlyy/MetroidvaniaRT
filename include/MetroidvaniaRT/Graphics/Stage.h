@@ -48,10 +48,10 @@ namespace MetroidvaniaRT::Graphics {
       return this;
     }
 
-    void createPlatforms(NovelRT::Graphics::RenderingService* renderer, bool force = false);
+    void createPlatforms(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer, bool force = false);
     void renderPlatforms();
 
-    void create(NovelRT::Graphics::RenderingService* renderer, bool force = false);
+    void create(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer, bool force = false);
     void render();
 
     Stage(IdentificationInformation& identificationInformation);

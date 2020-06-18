@@ -45,14 +45,14 @@ namespace MetroidvaniaRT::Graphics {
 
   void StageService::initiateRenderLoopStage(int stageId) {
     auto stage = getStage(stageId);
-    _runner->subscribeToSceneConstructionRequested([stage] {
+    _runner->SceneConstructionRequested += [stage] {
       stage->render();
-      });
+    };
   }
   void StageService::initiateRenderLoopStage(const std::string& stageName) {
     auto stage = getStage(stageName);
-    _runner->subscribeToSceneConstructionRequested([stage] {
+    _runner->SceneConstructionRequested += [stage] {
       stage->render();
-    });
+    };
   }
 }
