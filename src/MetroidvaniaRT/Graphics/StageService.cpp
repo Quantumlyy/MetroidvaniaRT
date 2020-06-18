@@ -2,7 +2,8 @@
 
 namespace MetroidvaniaRT::Graphics {
 
-  StageService::StageService() { }
+  StageService::StageService(MetroidvaniaRunner* const runner) :
+    _runner(runner) { }
 
   StageService* StageService::addStage(std::unique_ptr<Stage> stage) {
     stages.insert(std::pair(stage.get()->getII(), std::move(stage)));
@@ -20,25 +21,38 @@ namespace MetroidvaniaRT::Graphics {
     return stages.at(opts).get();
   }
 
-  StageService* StageService::addStagePlatform(int stageId, std::unique_ptr<Platform> platform) {
+  Stage* StageService::createStage(int stageId, bool force) {
     auto stage = getStage(stageId);
-    stage->addPlatform(std::move(platform));
-    return this;
+    stage->create(_runner->getRenderer(), force);
+    return stage;
   }
-  StageService* StageService::addStagePlatform(const std::string& stageName, std::unique_ptr<Platform> platform) {
+  Stage* StageService::createStage(const std::string& stageName, bool force) {
     auto stage = getStage(stageName);
-    stage->addPlatform(std::move(platform));
-    return this;
+    stage->create(_runner->getRenderer(), force);
+    return stage;
   }
 
-  Stage* StageService::renderStage(NovelRT::NovelRenderingService* renderer, int stageId) {
+  Stage* StageService::renderStage(int stageId) {
     auto stage = getStage(stageId);
-    stage->renderStage(renderer);
+    stage->render();
     return stage;
   }
-  Stage* StageService::renderStage(NovelRT::NovelRenderingService* renderer, const std::string& stageName) {
+  Stage* StageService::renderStage(const std::string& stageName) {
     auto stage = getStage(stageName);
-    stage->renderStage(renderer);
+    stage->render();
     return stage;
+  }
+
+  void StageService::initiateRenderLoopStage(int stageId) {
+    auto stage = getStage(stageId);
+    _runner->SceneConstructionRequested += [stage] {
+      stage->render();
+    };
+  }
+  void StageService::initiateRenderLoopStage(const std::string& stageName) {
+    auto stage = getStage(stageName);
+    _runner->SceneConstructionRequested += [stage] {
+      stage->render();
+    };
   }
 }

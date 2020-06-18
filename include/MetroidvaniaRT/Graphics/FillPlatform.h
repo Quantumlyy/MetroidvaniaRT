@@ -9,12 +9,13 @@ namespace MetroidvaniaRT::Graphics {
   /**
    * The base class for creating a fill platform in a stage.
    */
-  class FillPlatform : public Platform {
+  class FillPlatform : public Platform<NovelRT::Graphics::BasicFillRect> {
   public:
-    NovelRT::NovelBasicFillRect* renderObj;
-    NovelRT::NovelBasicFillRect* formRender(NovelRT::NovelRenderingService* renderer) final;
+    std::shared_ptr<NovelRT::Graphics::BasicFillRect> renderObj;
 
-    FillPlatform(IdentificationInformation& identificationInformation, NovelRT::RGBAConfig& colourFill, NovelRT::NovelCommonArgs& args);
+    std::shared_ptr<NovelRT::Graphics::BasicFillRect> create(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer) override;
+
+    FillPlatform(IdentificationInformation& identificationInformation, NovelRT::Transform& transform, int layer, NovelRT::Graphics::RGBAConfig& colourConfig);
   };
 }
 

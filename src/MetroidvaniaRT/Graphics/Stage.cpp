@@ -2,6 +2,8 @@
 
 namespace MetroidvaniaRT::Graphics {
   Stage::Stage(IdentificationInformation& identificationInformation) :
+    StageCreated(NovelRT::Utilities::Event<>()),
+    StageRendered(NovelRT::Utilities::Event<>()),
     _II(identificationInformation),
     _computedHighestLayer(0),
     _computedLowestLayer(0) { }
@@ -17,39 +19,29 @@ namespace MetroidvaniaRT::Graphics {
     return _computedLowestLayer;
   }
 
-  void Stage::checkIIConfliction(Platform* insertedPlatform) {
-    auto insertedII = insertedPlatform->getII();
-    for (const std::unique_ptr<Platform>& platform : platforms) {
-      auto currentII = platform.get()->getII();
-      
-      if (currentII.id == insertedII.id) throw std::logic_error("Platform has a conflicting ID");
-      if ((currentII.name == insertedII.name) && (insertedII.name != "")) throw std::logic_error("Platform has a conflicting name");
-    }
-  }
-
-  Stage* Stage::addPlatform(std::unique_ptr<Platform> platform) {
-    checkIIConfliction(platform.get());
-    platforms.push_back(std::move(platform));
-    computePlatformLayers();
-    return this;
-  }
-
-  void Stage::renderPlatforms(NovelRT::NovelRenderingService* renderer) {
-    for (const std::unique_ptr<Platform>& platform : platforms)
-      platform->formRender(renderer);
-  }
-
   void Stage::computePlatformLayers() {
     for (const std::unique_ptr<Platform>& platform : platforms) {
       auto layer = platform.get()->getLayer();
-      if (layer  > getComputedHighestLayer()) _computedHighestLayer = layer;
+      if (layer > getComputedHighestLayer()) _computedHighestLayer = layer;
       if (layer < getComputedLowestLayer()) _computedLowestLayer = layer;
     }
   }
 
-  void Stage::renderStage(NovelRT::NovelRenderingService* renderer) {
-    computePlatformLayers();
-    renderPlatforms(renderer);
-    raiseStageRendered();
+  void Stage::createPlatforms(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer, bool force) {
+    for (const std::unique_ptr<Platform>& platform : platforms)
+      if (force || !platform.get()->getCreated()) platform.get()->create(renderer);
+  }
+  void Stage::renderPlatforms() {
+    for (const std::unique_ptr<Platform<NovelRT::Graphics::RenderObject>>& platform : platforms)
+      platform->render();
+  }
+
+  void Stage::create(std::weak_ptr<NovelRT::Graphics::RenderingService> renderer, bool force) {
+    createPlatforms(renderer, force);
+    StageCreated();
+  }
+  void Stage::render() {
+    renderPlatforms();
+    StageRendered();
   }
 }
